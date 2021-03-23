@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3em 0 0 0;
+  padding: 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  list-style: none;
+  margin-left: 2em;
+}
+
+.main {
+  margin-top: 3em;
+}
+
+.warning {
+  color: red;
+  padding: 1em 0;
+}
+
+.channel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.channel-subscribers {
+  font-size: 0.75em;
+}
