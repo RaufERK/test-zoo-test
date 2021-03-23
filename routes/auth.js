@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const { sessionChecker } = require('../middleware/auth');
+const User = require('../models/user.model');
 
 const saltRounds = 10;
 const router = express.Router();
