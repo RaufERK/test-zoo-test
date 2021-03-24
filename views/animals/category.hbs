@@ -17,14 +17,20 @@
           {{#unless category.animals}}
           <p>Животных данной категории пока не завезли</p>
           {{/unless}}
+              
+
           {{#each category.animals}}
           <div class="animal-type">
             <a href="/animals/{{this.englishName}}">
-              {{!-- {{#if this.picture}} --}}
-              {{!-- <img src="/img/mammals.jpeg" alt="" class="animal-type__img" /></a> --}}
-              <img src="/img/nophoto.jpg" alt="" class="animal-type__img" /></a>
+
+              {{!-- {{#if this.picture[0]}}
+                <img src="{{this.picture}}" alt="" class="animal-type__img" />
+              {{else}} --}}
+                <img src="/img/nophoto.jpg" alt="" class="animal-type__img" />
+              {{!-- {{/if}} --}}
+            </a>
             <div class="animal-type__title">
-              <a href="#">{{this.name}}</a>
+              <a href="/animals/{{this.englishName}}">{{this.name}}</a>
             </div>
           </div>
           {{/each}}
