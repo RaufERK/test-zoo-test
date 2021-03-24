@@ -9,7 +9,7 @@ const dbOptions = {
 };
 
 const connectDB = async () => {
-  await mongoose.connect(MOCK_DB, dbOptions, () => {
+  await mongoose.connect(DB_PATH, dbOptions, () => {
     console.log('Database connected'.yellow.bold);
   });
 };

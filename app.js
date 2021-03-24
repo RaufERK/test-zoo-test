@@ -5,6 +5,7 @@ const useMiddleware = require('./middleware');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const animalRouter = require('./routes/animals');
 const adminRouter = require('./routes/admin');
 
 const { PORT } = process.env;
@@ -18,6 +19,7 @@ connectDB();
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', animalRouter);
 app.use('/admin', adminRouter);
 
 useErrorHandlers(app);
