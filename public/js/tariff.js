@@ -1,7 +1,7 @@
 const tariff = document.querySelector('.tariff');
-const tariffWeekDays = document.querySelector('.tab-tariffWeekDays')
-const tariffDaysOff = document.querySelector('.tab-tariffDaysOff')
-
+const tariffWeekDays = document.querySelector('.tab-tariffWeekDays');
+const tariffDaysOff = document.querySelector('.tab-tariffDaysOff');
+const tariffEditForm = document.querySelector('.tariffEdit');
 
 if (tariff) {
   tariff.addEventListener('click', async (event) => {
@@ -9,7 +9,6 @@ if (tariff) {
     if (event.target.id === 'tariffWeekDays') {
       tariffDaysOff.style.display = 'none';
       tariffWeekDays.style.display = '';
-
     }
     if (event.target.id === 'dayOff') {
       tariffDaysOff.style.display = '';
@@ -17,4 +16,21 @@ if (tariff) {
     }
   });
 }
- 
+
+if (tariffEditForm) {
+  tariffEditForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const response = await fetch('/admin/prices', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: event.target.querySelector('button').dataset.edit,
+        priceToChildren: event.target.priceToChildren.value,
+        price: event.target.price.value,
+      }),
+    });
+    const jsonResponse = await response.json();
+  });
+}
