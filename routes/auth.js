@@ -52,6 +52,7 @@ router.post('/login', async (req, res) => {
 
   req.session.login = email;
   req.session.userId = userFound._id;
+  res.redirect('/admin')
   return res.status(200).json();
 });
 
