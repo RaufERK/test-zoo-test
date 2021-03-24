@@ -1,12 +1,12 @@
-module.exports = function (app) {
-  const express = require('express');
-  const cookieParser = require('cookie-parser');
-  const session = require('express-session');
-  const morgan = require('morgan');
-  const MongoStore = require('connect-mongo');
-  const path = require('path');
-  const { cookiesCleaner } = require('./auth');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const morgan = require('morgan');
+const MongoStore = require('connect-mongo');
+const path = require('path');
+const { cookiesCleaner } = require('./auth');
 
+module.exports = function (app) {
   const { DB_PATH } = process.env;
 
   app.use(morgan('dev'));
