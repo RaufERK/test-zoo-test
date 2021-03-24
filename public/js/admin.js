@@ -1,15 +1,10 @@
 const categoryForm = document.querySelector('#category-form');
 const animalForm = document.querySelector('#animal-form');
+const addCatBtn = document.querySelector('#add-category-btn');
 
-categoryForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const response = await fetch('/admin/addCategory', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({category})
-  })
-  
-})
+if (addCatBtn) {
+  addCatBtn.addEventListener('click', () => {
+    console.log('click');
+    categoryForm.classList.toggle('show');
+  });
+}

@@ -15,4 +15,13 @@ router.get('/animals', async (req, res) => {
   res.render('animals/categories', { title: '', categories });
 });
 
+router.get('/animals/:animalName', async (req, res) => {
+  const { animalName: englishName } = req.params;
+  // console.log('animal name ======= ', animalName);
+
+  const animal = await Animal.findOne({ englishName });
+  console.log(animal);
+  res.render('animals/animal', { title: '', animal });
+});
+
 module.exports = router;
