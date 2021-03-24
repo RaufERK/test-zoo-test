@@ -8,15 +8,20 @@ router
   .route('/')
   .get(async (req, res) => {
     const categoty = await Category.find();
-    res.render('admin/adminPage');
+    res.render('admin/adminPage', { categoty });
   })
   // Подключаем multer для routе '/admin'
-  .post(upload.single('filedata'), async (req, res) => {
-    console.log('данные ====>', req.body);
-    console.log(req.files);
-    const { name, description, englishName } = req.body;
-    const { path } = req.file;
-    await Animal.create({ name, description, englishName, picture: path });
+  .post(upload.any('filedata'), async (req, res) => {
+    const { name, description, englishName, categoryes } = req.body;
+    
+    const allPath = req.files.map((el) => el.path);
+    const newAnimal = await Animal.create({ name, description, englishName, picture: allPath });
+
+    const curCategory = await Category.findById(categoryes);
+    curCategory.animals.push(newAnimal._id);
+    await curCategory.save()
+    // console.log(curCategory);
+    // console.log(allPath);
 
     res.status(200).send('Ok');
   });

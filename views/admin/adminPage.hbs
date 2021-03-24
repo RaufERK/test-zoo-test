@@ -45,7 +45,11 @@
 
       <div class="field">
         <label>Выберите категорию</label>
-        <select name="categoryes"></select>
+        <select name="categoryes">
+          {{#each categoty}}
+             <option value={{this._id}}>{{this.title}}</option>
+          {{/each}}
+        </select>
       </div>
 
       <div class="field">
