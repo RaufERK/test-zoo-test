@@ -1,13 +1,20 @@
-<div>
-  <h4>Добавить категорию</h4>
-  <input type="text" name="category">
-  <button>Отправить</button>
+<div id="category-form">
+  <form action="/admin/addCategory" method="POST">
+    <h4>Добавить категорию</h4>
+    <input type="text" name="title">
+    <input type="text" name="englishName">
+    <textarea name="description" cols="30" rows="10"></textarea>
+    <button>Отправить</button>
+  </form>
 </div>
 
-<form action="/admin" method="POST" enctype="multipart/form-data">
-  <input type="text" name="name" placeholder="Введите название животного">
-  <select name="categoryes"></select>
-  <textarea name="description" cols="30" rows="10"></textarea>
-  <input type="file" name="filedata" multiple>
-  <button>Отправить</button>
-</form>
+<div id="animal-form">
+  <form action="/admin" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Введите название животного">
+    <input type="text" name="englishName" placeholder="Введите название животного (лат)">
+    <select name="categoryes"></select>
+    <textarea name="description" cols="30" rows="10"></textarea>
+    <input type="file" name="filedata" multiple>
+    <button>Отправить</button>
+  </form>
+</div>
