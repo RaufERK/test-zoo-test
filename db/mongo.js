@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const colors = require('colors');
 
-const { DB_PATH } = process.env;
+const { DB_PATH, MOCK_DB } = process.env;
 
 const dbOptions = {
   useNewUrlParser: true,

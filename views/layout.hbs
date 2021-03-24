@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-  <link rel="stylesheet" href="/css/style.css">
-  <script defer src="/js/helpers.js"></script>
-  <script defer src="/js/application.js"></script>
-  <title>{{title}}</title>
-</head>
-<body>
-  <div class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/slider.css" />
+
+    <script src="https://kit.fontawesome.com/09b87831a7.js" crossorigin="anonymous"></script>
+
+    <title>ZOO</title>
+  </head>
+  <body>
     <header class="header">
-      <div class="logo"><a href='/'>Logo</a></div>
-      <ul class="nav">
-        {{#unless login}}
-          <li class='nav-item'><a href='/login' class='nav-link'>Log in</a></li>
-          <li class='nav-item'><a href='/register' class='nav-link'>Sign up</a></li>
-        {{/unless}}
-        {{#if login}}
-          <li class='nav-item'><a href="/profile">{{login}}</a></li>
-          <li class='nav-item'><a href="/logout">logout</a></li>
-        {{/if}}
-        <li class='nav-item'><a href='/' class='nav-link'>Home</a></li>
-      </ul>
+      <div class="container">
+        <div class="logo">
+          <a href="/"><i class="fas fa-dove"></i> ELBRUS ZOO</a>
+          <!-- <img src="./img/logo.png" alt="" /> -->
+        </div>
+        <input type="checkbox" id="toggler" class="toggler" />
+        <label for="toggler" class="burger">
+          <span><i class="fas fa-bars"></i></span>
+        </label>
+        <nav class="navbar">
+          <ul>
+            <li class="navitem"><a href="/" class="navlink">Главная</a></li>
+            <li class="navitem"><a href="/animals" class="navlink">Животные</a></li>
+            <li class="navitem"><a href="/prices" class="navlink">Тарифы</a></li>
+            <!-- <li>
+              <a href="#" class="navlink searchlink"><i class="fas fa-search search-icon"></i></a>
+            </li> -->
+          </ul>
+        </nav>
+        <div class="admin"><a href="/admin" class="account-link">Личный кабинет</a></div>
+      </div>
     </header>
-    <main class='main'>
-      {{{body}}}
-    </main>
-  </div>
-</body>
+    
+    {{{body}}}
+
+    <footer class="footer">
+      <div class="container">
+        &copy; 2021 - Elbrus Zoo Team
+      </div>
+    </footer>
+  </body>
 </html>
