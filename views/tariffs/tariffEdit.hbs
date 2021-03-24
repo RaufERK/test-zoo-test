@@ -1,12 +1,18 @@
-<h1>Изменение тарифов</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<h1 class="ui header">Изменение тарифов</h1>
 {{#each tariffs}}
-<h2>{{this.types}}</h2>
-<form method="POST" class="tariffEdit" action="/admin/prices">
+<h2 class="ui header">{{this.types}}</h2>
+<form method="POST" class="ui form tariffEdit " action="/admin/prices">
+<div class="field">
   <label for="priceToChildren">Детский тариф</label>
   <input type="number" name="priceToChildren" value="{{this.priceToChildren}}" required/>
+  </div>
+  <div class="field">
   <label for="price">Взрослый тариф</label>
   <input type="number" name="price" value="{{this.price}}" required/>
-  <button data-edit="{{this._id}}">Изменить</button>
+  </div>
+  <button class="ui button primary" data-edit="{{this._id}}">Изменить</button>
 </form>
 {{/each}}
 <script defer src="/js/tariff.js"></script>
