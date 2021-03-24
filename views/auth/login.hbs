@@ -1,21 +1,29 @@
-<h1>Log in</h1>
-{{#if login}}
-<div>You are logged in</div>
-{{else}}
-<form action="/login" method="post" class="ui form" id="loginForm">
-  <div class="warning" id='warning'></div>
-  
-  <div class="field">
-    <label>Email</label>
-    <input type="text" name="email" id="email" placeholder="Email" required>
+<section class="hero-inner">
+  <div class="container">
+    <h1 class="inner-title">Тарифы на посещение нашего зоопарка</h1>
   </div>
+</section>
 
-  <div class="field">
-    <label>Password</label>
-    <input type="password" name="password" id="password" placeholder="Password" required>
-  </div>
+<div class="container">
+    
+  {{#if login}}
+  <div>You are logged in</div>
+  {{else}}
+  <form action="/login" method="post" class="ui form" id="loginForm">
+    <div class="warning" id='warning'></div>
+    
+    <div class="field">
+      <label>Email</label>
+      <input type="text" name="email" id="email" placeholder="Email" required>
+    </div>
 
-  <button class="ui button" type="submit">Log in</button>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" name="password" id="password" placeholder="Password" required>
+    </div>
 
-</form>
-{{/if}}
+    <button class="ui button" type="submit">Log in</button>
+
+  </form>
+  {{/if}}
+</div>

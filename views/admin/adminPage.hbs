@@ -1,13 +1,64 @@
-<div>
-  <h4>Добавить категорию</h4>
-  <input type="text" name="category">
-  <button>Отправить</button>
-</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<section class="hero-inner">
+  <div class="container">
+    <h1 class="inner-title">Административная часть</h1>
+  </div>
+</section>
 
-<form action="/admin" method="POST" enctype="multipart/form-data">
-  <input type="text" name="name" placeholder="Введите название животного">
-  <select name="categoryes"></select>
-  <textarea name="description" cols="30" rows="10"></textarea>
-  <input type="file" name="filedata" multiple>
-  <button>Отправить</button>
-</form>
+<div class="container">
+  <div id="category-form">
+    <h2 class="ui header">Добавить категорию</h2>
+    <form action="/admin/addCategory" method="POST" class="ui form">
+      <div class="field">
+        <label>Название категории</label>
+        <input type="text" name="title">
+      </div>
+
+      <div class="field">
+        <label>Название по-английски (для урла)</label>
+        <input type="text" name="englishName">
+      </div>
+
+      <div class="field">
+        <label>Описание</label> 
+        <textarea name="description" cols="30" rows="10"></textarea>
+      </div>
+      <button class="ui button primary">Отправить</button>
+    </form>
+  </div>
+  <div class="ui divider mydivider"></div>
+
+
+  <div id="animal-form">
+    <h2 class="ui header">Добавить животное</h2>
+
+    <form action="/admin" method="POST" enctype="multipart/form-data" class="ui form">
+      <div class="field">
+        <label>Название животного</label>
+        <input type="text" name="name" placeholder="Введите название животного">
+      </div>
+
+      <div class="field">
+        <label>Название животного по-английски</label>
+        <input type="text" name="englishName" placeholder="Введите название животного (лат)">
+      </div>
+
+      <div class="field">
+        <label>Выберите категорию</label>
+        <select name="categoryes"></select>
+      </div>
+
+      <div class="field">
+        <label>Описание животного</label>
+        <textarea name="description" cols="30" rows="10"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Фото животного</label>
+        <input type="file" name="filedata" multiple>
+      </div>
+
+      <button class="ui button primary">Отправить</button>
+    </form>
+  </div>
+</div>

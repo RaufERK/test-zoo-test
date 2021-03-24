@@ -6,6 +6,7 @@ const animalSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  englishName: { type: String, required: true, unique: true },
   description: String,
   picture: [],
 });

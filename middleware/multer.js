@@ -5,16 +5,16 @@ const fs = require('fs').promises;
 const storageConfig = multer.diskStorage({
   destination: async (req, file, cb) => {
     console.log(req.body);
-    const { name } = req.body;
+    // const { englishName } = req.body;
     // if(await !fs.access(`public/image/${name}`)){
-      // await fs.mkdir(`public/image/${name}`);
+      await fs.mkdir(`public/image/kangaroo`);
     // }
-    cb(null, `public/image`);
+    cb(null, `public/image/kangaroo`);
   },
   // Устанавливаем правила именования файлов
   filename: (req, file, cb) => {
-    const { name } = req.body;
-    cb(null, `${name}-${file.originalname}`);
+    const { englishName } = req.body;
+    cb(null, `${englishName}-${file.originalname}`);
   },
 });
 
