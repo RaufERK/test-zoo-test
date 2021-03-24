@@ -194,6 +194,10 @@ nav li {
   margin-right: 1em;
 }
 
+.mydivider {
+  margin: 4em 0 !important;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;
@@ -261,5 +265,10 @@ nav li {
   }
   .animal-type__title {
     font-size: 1.125rem;
+  }
+
+  #category-form,
+  #animal-form {
+    max-width: 60%;
   }
 }
