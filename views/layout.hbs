@@ -34,7 +34,14 @@
             </li> -->
           </ul>
         </nav>
-        <div class="admin"><a href="/login" class="account-link">Личный кабинет</a></div>
+        <div class="admin">
+          {{#if login}}
+          <a href="/admin" class="account-link">Личный кабинет</a>
+        <a href="/logout" class="account-link">Выйти</a>
+        {{else}}
+        <a href="/login" class="account-link">Личный кабинет</a>
+        {{/if}}
+        </div>
       </div>
     </header>
     
