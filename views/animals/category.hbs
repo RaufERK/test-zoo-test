@@ -7,12 +7,11 @@
     <section class="animal-types">
       <div class="container">
         <!-- Animal Types -->
-        {{!-- <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus fugit libero tempore, exercitationem quod
-          possimus ullam reprehenderit dignissimos expedita asperiores cumque saepe dolorem, sed necessitatibus labore
-          illum? Maiores sapiente veniam alias perferendis consequuntur harum, incidunt saepe numquam eveniet, culpa
-          nobis id aliquid esse temporibus inventore velit repellat nemo corrupti facilis.
-        </p> --}}
+        {{#if category.description}}
+        <p>
+          {{category.description}}
+        </p>
+        {{/if}}
 
         <div class="animal-types">
           {{#unless category.animals}}

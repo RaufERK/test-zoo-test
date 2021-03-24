@@ -1,14 +1,25 @@
-<div class="tariff">
-<button id='tariffWeekDays'>Тариф буднего дня</button>
-<button id='dayOff'>Тариф выходного дня</button>
-<div class="tab-tariffWeekDays">
-    <li>Стоимость детского билета: {{tariffWeekDays.priceToChildren}} рублей</li>
-    <li>Стоимость взрослого билета: {{tariffWeekDays.price}} рублей</li>
+<section class="hero-inner">
+  <div class="container">
+    <h1 class="inner-title">Тарифы на посещение нашего зоопарка</h1>
+  </div>
+</section>
+
+<div class="container">
+  <div class="tariff">
+    <button class='btn' id='tariffWeekDays'>Тариф буднего дня</button>
+    <button class='btn' id='dayOff'>Тариф выходного дня</button>
+    
+    <div class="tab-tariffWeekDays">
+        <li>Стоимость детского билета: {{tariffWeekDays.priceToChildren}} рублей</li>
+        <li>Стоимость взрослого билета: {{tariffWeekDays.price}} рублей</li>
+    </div>
+    <div class="tab-tariffDaysOff" style="display: none;">
+        <li>Стоимость детского билета: {{tariffDaysOff.priceToChildren}} рублей</li>
+        <li>Стоимость взрослого билета: {{tariffDaysOff.price}} рублей</li>
+    </div>
+  </div>
+
 </div>
-<div class="tab-tariffDaysOff" style="display: none;">
-    <li>Стоимость детского билета: {{tariffDaysOff.priceToChildren}} рублей</li>
-    <li>Стоимость взрослого билета: {{tariffDaysOff.price}} рублей</li>
-</div>
-</div>
+
 
 <script defer src="/js/tariff.js"></script>
