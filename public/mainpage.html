@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://kit.fontawesome.com/09b87831a7.js" crossorigin="anonymous"></script>
+
+    <title>ZOO</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <a href="/"><i class="fas fa-dove"></i> ELBRUS ZOO</a>
+          <!-- <img src="./img/logo.png" alt="" /> -->
+        </div>
+        <input type="checkbox" id="toggler" class="toggler" />
+        <label for="toggler" class="burger">
+          <span><i class="fas fa-bars"></i></span>
+        </label>
+        <nav class="navbar">
+          <ul>
+            <li class="navitem"><a href="/" class="navlink">Главная</a></li>
+            <li class="navitem"><a href="/animals" class="navlink">Животные</a></li>
+            <li class="navitem"><a href="/prices" class="navlink">Тарифы</a></li>
+            <!-- <li>
+              <a href="#" class="navlink searchlink"><i class="fas fa-search search-icon"></i></a>
+            </li> -->
+          </ul>
+        </nav>
+        <div class="admin"><a href="/admin" class="account-link">Личный кабинет</a></div>
+      </div>
+    </header>
+    <section class="hero">
+      <div class="container">
+        <div class="maintext">Добро пожаловать в наш зоопарк!</div>
+        <button class="btn hero-btn">Смотреть животных</button>
+      </div>
+    </section>
+
+    <section class="animal-types">
+      <div class="container">
+        <h2 class="main-subtitle">Познакомьтесь с нашими подопечными</h2>
+        <!-- Animal Types -->
+        <div class="animal-types">
+          <div class="animal-type">
+            <a href="#"><img src="./img/mammals.jpeg" alt="" class="animal-type__img" /></a>
+            <div class="animal-type__title">
+              <a href="#">Млекопитающие</a>
+            </div>
+          </div>
+
+          <div class="animal-type">
+            <a href="#"><img src="./img/fish.webp" alt="" class="animal-type__img" /></a>
+            <div class="animal-type__title">
+              <a href="#">Рыбы</a>
+            </div>
+          </div>
+
+          <div class="animal-type">
+            <a href="#"><img src="./img/birds.jpeg" alt="" class="animal-type__img" /></a>
+            <div class="animal-type__title">
+              <a href="#">Птицы</a>
+            </div>
+          </div>
+
+          <div class="animal-type">
+            <a href="#"><img src="./img/reptiles.jpg" alt="" class="animal-type__img" /></a>
+            <div class="animal-type__title">
+              <a href="#">Рептилии</a>
+            </div>
+          </div>
+
+          <div class="animal-type">
+            <a href="#"><img src="./img/insects.jpeg" alt="" class="animal-type__img" /></a>
+            <div class="animal-type__title">
+              <a href="#">Насекомые</a>
+            </div>
+          </div>
+        </div>
+        <!-- End Animal Types -->
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        &copy; 2021 - Elbrus Zoo Team
+      </div>
+    </footer>
+  </body>
+</html>
