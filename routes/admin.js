@@ -24,6 +24,7 @@ router
 router.post('/addCategory', async (req, res) => {
   const newCategory = await Category.create(req.body);
   console.log(newCategory);
+  res.redirect('/admin/categories?categoryAdded=1');
 });
 
 module.exports = router;
