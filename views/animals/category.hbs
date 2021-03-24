@@ -23,11 +23,11 @@
           <div class="animal-type">
             <a href="/animals/{{this.englishName}}">
 
-              {{!-- {{#if this.picture[0]}}
-                <img src="{{this.picture}}" alt="" class="animal-type__img" />
-              {{else}} --}}
+              {{#if this.mainpic}}
+                <div class='img'><img src="{{this.mainpic}}" alt="" class="animal-type__img"/></div>
+              {{else}}
                 <img src="/img/nophoto.jpg" alt="" class="animal-type__img" />
-              {{!-- {{/if}} --}}
+              {{/if}}
             </a>
             <div class="animal-type__title">
               <a href="/animals/{{this.englishName}}">{{this.name}}</a>
