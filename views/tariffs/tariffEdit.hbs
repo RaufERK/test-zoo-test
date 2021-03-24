@@ -1,0 +1,12 @@
+<h1>Изменение тарифов</h1>
+{{#each tariffs}}
+<h2>{{this.types}}</h2>
+<form method="POST" class="tariffEdit" action="/admin/prices">
+  <label for="priceToChildren">Детский тариф</label>
+  <input type="number" name="priceToChildren" value="{{this.priceToChildren}}" required/>
+  <label for="price">Взрослый тариф</label>
+  <input type="number" name="price" value="{{this.price}}" required/>
+  <button data-edit="{{this._id}}">Изменить</button>
+</form>
+{{/each}}
+<script defer src="/js/tariff.js"></script>
