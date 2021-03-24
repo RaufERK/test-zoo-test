@@ -198,6 +198,28 @@ nav li {
   margin: 4em 0 !important;
 }
 
+.add-category {
+  margin: 4em 0 !important;
+}
+
+.category-block__admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+form {
+  transition: all ease-in 1s;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;

@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<script defer src="/js/admin.js"></script>
+<section class="hero-inner">
+  <div class="container">
+    <h1 class="inner-title">{{title}}</h1>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="add-category">
+    <button class='ui button primary' id='add-category-btn'>Добавить новую категорию</button>
+  </div>
+
+  <div id="category-form" style='display:none'>
+    <h2 class="ui header">Добавить категорию</h2>
+    <form action="/admin/addCategory" method="POST" class="ui form">
+      <div class="field">
+        <label>Название категории</label>
+        <input type="text" name="title">
+      </div>
+
+      <div class="field">
+        <label>Название по-английски (для урла)</label>
+        <input type="text" name="englishName">
+      </div>
+
+      <div class="field">
+        <label>Описание</label> 
+        <textarea name="description" cols="30" rows="10"></textarea>
+      </div>
+      <button class="ui button primary">Отправить</button>
+    </form>
+  </div>
+  <div class="ui divider mydivider"></div>
+
+{{#each categories}}
+  <div class="ui segment">
+    <div class='category-block__admin'>
+      <div>
+        {{this.title}}
+      </div> 
+      <div>
+        <a href=''><i class="edit outline icon"></i></a>
+        <a href=''><i class="close icon" style='color:red' title='удалить'></i></a>
+      </div>
+    </div>
+  </div>
+{{/each}}
+</div>

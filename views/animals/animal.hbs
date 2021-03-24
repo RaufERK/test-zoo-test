@@ -3,26 +3,24 @@
 
 <section class="hero-inner">
       <div class="container">
-        <h1 class="inner-title">Animal Title</h1>
+        <h1 class="inner-title">{{animal.name}}</h1>
       </div>
     </section>
 
     <section class="animal-types">
       <div class="container">
-        <!-- <h2 class="main-subtitle">Познакомьтесь с нашими подопечными</h2> -->
         <!-- Animal Types -->
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus fugit libero tempore, exercitationem quod
-          possimus ullam reprehenderit dignissimos expedita asperiores cumque saepe dolorem, sed necessitatibus labore
-          illum? Maiores sapiente veniam alias perferendis consequuntur harum, incidunt saepe numquam eveniet, culpa
-          nobis id aliquid esse temporibus inventore velit repellat nemo corrupti facilis.
+          {{animal.description}}
         </p>
 
         <!-- SLIDER **************************************************************************************** -->
         <div class="blog-slider__container">
+          {{#each animal.picture}}
           <div class="blogSlides fade">
-            <img src="/img/hero1.jpg" />
+            <img src="{{this}}" alt='' />
           </div>
+          {{/each}}
 
           <div class="blogSlides fade">
             <img src="/img/hero2.jpg" />

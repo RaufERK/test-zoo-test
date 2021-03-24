@@ -8,6 +8,7 @@ const authRouter = require('./routes/auth');
 const animalRouter = require('./routes/animals');
 const adminRouter = require('./routes/admin');
 const tariffRouter = require('./routes/tariff');
+const adminCategoriesRouter = require('./routes/adminCategories');
 
 const { PORT } = process.env;
 const connectDB = require('./db/mongo');
@@ -23,6 +24,7 @@ app.use('/', authRouter);
 app.use('/', animalRouter);
 app.use('/admin', adminRouter);
 app.use('/', tariffRouter);
+app.use('/', adminCategoriesRouter);
 
 useErrorHandlers(app);
 
