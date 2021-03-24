@@ -14,8 +14,6 @@ router
     res.render('tariffs/tariffEdit', { tariffs });
   })
   .post(async (req, res) => {
-    console.log(req.body);
-    // const { id, priceToChildren, price } = req.body;
     await Tariff.updateOne(
       { _id: req.body.id },
       {
@@ -23,5 +21,6 @@ router
         price: +req.body.price,
       }
     );
+    res.redirect('/admin/prices');
   });
 module.exports = router;
