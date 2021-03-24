@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/category/:categoryName', async (req, res) => {
   const { categoryName } = req.params;
   const category = await Category.findOne({ englishName: categoryName }).populate('animals');
+  // const animalsWithPics = 
   res.render('animals/category', { title: '', category });
 });
 
