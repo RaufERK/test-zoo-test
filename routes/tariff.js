@@ -11,16 +11,22 @@ router
   .route('/admin/prices')
   .get(async (req, res) => {
     const tariffs = await Tariff.find();
-    res.render('tariffs/tariffEdit', { tariffs });
+    res.render('tariffs/tariffEdit', {
+      tariffs,
+    });
   })
   .post(async (req, res) => {
-    await Tariff.updateOne(
-      { _id: req.body.id },
-      {
-        priceToChildren: +req.body.priceToChildren,
-        price: +req.body.price,
-      }
-    );
-    res.redirect('/admin/prices');
+    try {
+      await Tariff.updateOne(
+        { _id: req.body.id },
+        {
+          priceToChildren: +req.body.priceToChildren,
+          price: +req.body.price,
+        }
+      );
+      res.redirect(`/admin/prices`);
+    } catch (err) {
+      console.log(err);
+    }
   });
 module.exports = router;
