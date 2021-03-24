@@ -1,13 +1,13 @@
-module.exports = function (app) {
-  const express = require('express');
-  const cookieParser = require('cookie-parser');
-  const session = require('express-session');
-  const morgan = require('morgan');
-  const MongoStore = require('connect-mongo');
-  const path = require('path');
-  const { cookiesCleaner } = require('./auth');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const morgan = require('morgan');
+const MongoStore = require('connect-mongo');
+const path = require('path');
+const { cookiesCleaner } = require('./auth');
+const { DB_PATH, MOCK_DB } = process.env;
 
-  const { DB_PATH, MOCK_DB } = process.env;
+module.exports = function (app) {
 
   app.use(morgan('dev'));
 
