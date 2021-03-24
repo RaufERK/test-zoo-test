@@ -21,7 +21,7 @@ module.exports = function (app) {
       resave: true,
       saveUninitialized: false,
       cookie: { secure: false, maxAge: 60000000 },
-      store: MongoStore.create({ mongoUrl: MOCK_DB }),
+      store: MongoStore.create({ mongoUrl: DB_PATH }),
     })
   );
 
