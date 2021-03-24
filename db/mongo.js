@@ -9,7 +9,7 @@ const dbOptions = {
 };
 
 const connectDB = async () => {
-  await mongoose.connect(DB_PATH, dbOptions, () => {
+  await mongoose.connect('mongodb+srv://eagle:elbrus-eagles2021@cluster0.anpuf.mongodb.net/week3project?retryWrites=true&w=majority', dbOptions, () => {
     console.log('Database connected'.yellow.bold);
   });
 };
