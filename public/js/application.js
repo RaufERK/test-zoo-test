@@ -1,6 +1,7 @@
 const registerForm = document.querySelector('#registerForm');
 const loginForm = document.querySelector('#loginForm');
 const subscribeBtns = document.querySelectorAll('.subcribe-btn');
+const tariff = document.querySelector('.tariff')
 
 if (registerForm) {
   registerForm.addEventListener('submit', async (event) => {
@@ -77,4 +78,24 @@ if (subscribeBtns) {
       }
     });
   });
+}
+
+if(tariff) {
+  tariff.addEventListener('click', async event => {
+    if (event.target.id === 'tariffWeekDays'){
+      document.querySelector('.tab-content').innerHTML = `<li>Стоимость детского билета: {{tariffWeekDays.priceToChildren}} рублей</li>
+      <li>Стоимость взрослого билета: {{tariffWeekDays.price}} рублей</li>`;
+    }
+    if (event.target.id === 'dayOff'){
+      const response = await fetch('/tariff', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+      }
+      })
+      const text = await response.text()
+      document.querySelector('.tab-content').innerHTML = `<li>Стоимость детского билета: {{tariffDaysOff.priceToChildren}} рублей</li>
+      <li>Стоимость взрослого билета: {{tariffDaysOff.price}} рублей</li>`; 
+    }
+  })
 }
