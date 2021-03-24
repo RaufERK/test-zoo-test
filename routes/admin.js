@@ -14,7 +14,7 @@ router
   .post(upload.any('filedata'), async (req, res) => {
     const { name, description, englishName, categoryes } = req.body;
     
-    const allPath = req.files.map((el) => el.path);
+    const allPath = req.files.map((el) => el.path.slice(6));
     const newAnimal = await Animal.create({ name, description, englishName, picture: allPath });
 
     const curCategory = await Category.findById(categoryes);

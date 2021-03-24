@@ -24,4 +24,9 @@ router.get('/animals/:animalName', async (req, res) => {
   res.render('animals/animal', { title: '', animal });
 });
 
+router.route('animal/:id').get( async (req, res) => {
+  const animal = await Animal.findById(req.params.id);
+  console.log(animal);
+})
+
 module.exports = router;
