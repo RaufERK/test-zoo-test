@@ -7,9 +7,9 @@ const storageConfig = multer.diskStorage({
     console.log(req.body);
     const { name } = req.body;
     // if(await !fs.access(`public/image/${name}`)){
-      await fs.mkdir(`public/image/${name}`);
+      // await fs.mkdir(`public/image/${name}`);
     // }
-    cb(null, `public/image/${name}`);
+    cb(null, `public/image`);
   },
   // Устанавливаем правила именования файлов
   filename: (req, file, cb) => {
