@@ -7,7 +7,7 @@ module.exports = function (app) {
   const path = require('path');
   const { cookiesCleaner } = require('./auth');
 
-  const { DB_PATH } = process.env;
+  const { DB_PATH, MOCK_DB } = process.env;
 
   app.use(morgan('dev'));
 
@@ -21,7 +21,7 @@ module.exports = function (app) {
       resave: true,
       saveUninitialized: false,
       cookie: { secure: false, maxAge: 60000000 },
-      store: MongoStore.create({ mongoUrl: DB_PATH }),
+      store: MongoStore.create({ mongoUrl: MOCK_DB }),
     })
   );
 
