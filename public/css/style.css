@@ -185,6 +185,15 @@ nav li {
   margin-top: 3em;
 }
 
+.tab-tariffWeekDays,
+.tab-tariffDaysOff {
+  margin-top: 2em;
+}
+
+#tariffWeekDays {
+  margin-right: 1em;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;
