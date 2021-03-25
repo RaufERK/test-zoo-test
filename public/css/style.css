@@ -263,6 +263,12 @@ form {
   margin: 0 10px;
 }
 
+.error-message {
+  margin: 15px 0;
+  color: red;
+  font-weight: bold;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;
@@ -335,5 +341,6 @@ form {
   #category-form,
   #animal-form {
     max-width: 60%;
+    display: none;
   }
 }

@@ -1,40 +1,51 @@
+<script defer src="/js/adminPage.js"></script>
+
 {{> adminHeader}}
 
 <div class="container">
 
   {{> adminNavigation}}
 
-    <div class="add-category">
-    <button class='ui button primary' id='add-category-btn'>Добавить животное</button>
+  <div class='wrap'>
+
+    <div class="error-message">
+      {{error_message}}
+    </div>
+    <div class="add-animal">
+      <button class='ui button primary' id='add-animal-btn'>Добавить животное</button>
+    </div>
+
+
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Название (eng)</th>
+          <th>Категория</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each animalsWithCategory}}
+        <tr>
+          <td data-label="name">{{this.name}}</td>
+          <td data-label="englishName">{{this.englishName}}</td>
+          <td data-label="category" class="td-category"><span>{{this.titleCategory}}</span>
+            <span>
+              <a href='/admin/animals/edit/{{this._id}}'><i class="edit outline icon"></i></a>
+              <a href='/admin/animals/delete/{{this._id}}'><i data-action='delete' data-id='{{this._id}}'
+                  class="close icon" style='color:red' title='удалить'></i></a>
+            </span>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 
-
-  <table class="ui celled table">
-    <thead>
-      <tr>
-        <th>Название</th>
-        <th>Название (eng)</th>
-        <th>Категория</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each animalsWithCategory}}
-      <tr>
-        <td data-label="name">{{this.name}}</td>
-        <td data-label="englishName">{{this.englishName}}</td>
-        <td data-label="category" class="td-category"><span>{{this.titleCategory}}</span>
-          <span>
-            <a href='/admin/animals/edit/{{this._id}}'><i class="edit outline icon"></i></a>
-            <a href='#'><i data-action='delete' data-id='{{this._id}}' class="close icon" style='color:red'
-                title='удалить'></i></a>
-          </span>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-
   <div id="animal-form">
+    <div class="add-animal">
+      <button class='ui button primary' id='show-animal-list'>Список животных</button>
+    </div>
     <h2 class="ui header">Добавить животное</h2>
 
     <form action="/admin" method="POST" enctype="multipart/form-data" class="ui form">

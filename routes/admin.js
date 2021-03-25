@@ -7,6 +7,7 @@ const upload = require('../middleware/multer');
 router
   .route('/')
   .get(async (req, res) => {
+    const { error_message } = req.query;
     const categoty = await Category.find();
     const animals = await Animal.find();
     const animalsWithCategory = animals.map(({ _id, name, englishName }) => {
@@ -22,6 +23,7 @@ router
       title: 'Административная часть',
       categoty,
       animalsWithCategory,
+      error_message
     });
   })
   // Подключаем multer для routе '/admin'
@@ -29,20 +31,25 @@ router
     const { name, description, englishName, categoryes } = req.body;
 
     const allPath = req.files.map((el) => el.path.slice(6));
-    const newAnimal = await Animal.create({
-      name,
-      description,
-      englishName,
-      picture: allPath,
-    });
+    let newAnimal;
+    try {
+      newAnimal= await Animal.create({
+        name,
+        description,
+        englishName,
+        picture: allPath,
+      });
+    } catch (error) {
+      return res.status(500).redirect('/admin?error_message=Животное с таким именем уже создано')
+    }
 
     const curCategory = await Category.findById(categoryes);
     curCategory.animals.push(newAnimal._id);
     await curCategory.save();
     // console.log(curCategory);
     // console.log(allPath);
-      // res.redirect(`/animals/${englishName}`);
-    res.status(200).send('Ok')
+    // res.redirect(`/animals/${englishName}`);
+    res.status(200).redirect('/admin');
   });
 
 router.post('/addCategory', upload.single('filedata'), async (req, res) => {
@@ -59,9 +66,6 @@ router.post('/addCategory', upload.single('filedata'), async (req, res) => {
   res.redirect('/admin/categories?categoryAdded=1');
 });
 
-
-
-
 router
   .route('/animals/edit/:id')
   .get(async (req, res) => {
@@ -70,12 +74,12 @@ router
     const category = await Category.find();
     const curCategory = category.find((el) => el.animals.includes(id));
 
-    const editCategory = category.map(({_id, title}) => {
+    const editCategory = category.map(({ _id, title }) => {
       return {
         _id,
         title,
-        selected: title === curCategory.title ? true : false
-      }
+        selected: title === curCategory.title ? true : false,
+      };
     });
 
     res.render('admin/editAnimals', {
@@ -84,28 +88,46 @@ router
       curCategory,
     });
   })
-  .post( async (req, res) => {
+  .post(async (req, res) => {
     const { id } = req.params;
     const { name, englishName, categoryes, description } = req.body;
 
     const categoty = await Category.find();
     const curCategory = categoty.find((el) => el.animals.includes(id));
 
-    // Блок при условии что категория не изменилась
-    if(curCategory._id == categoryes){
       const animal = await Animal.findById(id);
       animal.name = name;
       animal.englishName = englishName;
       animal.description = description;
       await animal.save();
-      return res.redirect('/admin')
-    }
 
+    // Блок при условии что категория не изменилась
+    if (curCategory._id == categoryes) {
+      return res.redirect('/admin');
+    }
 
     // Блок при условии что категория изменилась
 
-    // curCategory.animals
-    
+    // Удаляем животное из текущей категории
+    const newArray = curCategory.animals.filter((el) => el._id != id);
+    curCategory.animals = newArray;
+    await curCategory.save();
+
+    const newCategory = await Category.findById(categoryes)
+    newCategory.animals.push(animal)
+     await newCategory.save();
+    res.status(200).redirect('/admin');
   });
+
+  // Удаление животного 
+
+  router.get('/animals/delete/:id', async (req, res) => {
+    try {
+      await Animal.findByIdAndDelete(req.params.id);
+      res.redirect('/admin')
+    } catch (error) {
+      res.status(500).redirect('/')
+    }
+  })
 
 module.exports = router;

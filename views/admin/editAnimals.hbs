@@ -3,10 +3,10 @@
 
 <div class="container">
 {{> adminNavigation}}
-  <div id="animal-form">
+  <div id="animal-form-edit">
     <h2 class="ui header">Редактировать животное</h2>
 
-    <form action="/admin/animals/edit/{{animal._id}}" method="POST" enctype="application/json" class="ui form">
+    <form action="/admin/animals/edit/{{animal._id}}" method="POST" enctype="multipart/form-data" class="ui form">
       <div class="field">
         <label>Название животного</label>
         <input type="text" name="name" placeholder="Введите название животного" value={{animal.name}}>
@@ -34,10 +34,16 @@
         <textarea name="description" cols="30" rows="10">{{animal.description}}</textarea>
       </div>
 
-      {{!-- <div class="field">
+      <div class="field">
         <label>Фото животного</label>
         <input type="file" name="filedata" multiple>
-      </div> --}}
+      </div>
+
+      <div>
+        {{#each animal.picture}}
+          <img src="{{this}}">
+        {{/each}}
+      </div>
 
       <button class="ui button primary">Сохранить</button>
     </form>
