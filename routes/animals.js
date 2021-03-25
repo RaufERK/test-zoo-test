@@ -17,6 +17,8 @@ router.get('/animals', async (req, res) => {
   res.render('animals/categories', { title: '', categories });
 });
 
+
+
 router
   .route('/animals/edit/:id')
   .get(async (req, res) => {
@@ -28,33 +30,34 @@ router
     const curCategory = category.find((el) => el.animals.includes(id));
     // console.log('curCategory================>>>',curCategory);
 
-    const editCategory = category.map((el) => {
-      const newObj = el.lean();
+    // const editCategory = category.map((el) => {
+    //   const newObj = el.lean();
 
-      newObj.test = 'TEST';
-      console.log(
-        el.title,
-        newObj.title,
-        curCategory.title,
-        newObj.title === curCategory.title ? true : false
-      );
-      newObj.selectedCategory =
-        newObj.title === curCategory.title ? true : false;
-      // console.log(newObj);
-      // console.log('дескрипторы',Object.getOwnPropertyDescriptors(el));
-      return newObj;
-    });
-    console.log('================>', editCategory[2]);
+    //   newObj.test = 'TEST';
+    //   console.log(
+    //     el.title,
+    //     newObj.title,
+    //     curCategory.title,
+    //     newObj.title === curCategory.title ? true : false
+    //   );
+    //   newObj.selectedCategory =
+    //     newObj.title === curCategory.title ? true : false;
+    //   // console.log(newObj);
+    //   // console.log('дескрипторы',Object.getOwnPropertyDescriptors(el));
+    //   return newObj;
+    // });
 
     res.render('admin/editAnimals', {
       animal,
-      category: editCategory,
+      category,
       curCategory,
     });
   })
   .post((req, res) => {
     console.log(req.body);
   });
+
+
 
 router.get('/animals/:animalName', async (req, res) => {
   const { animalName: englishName } = req.params;
