@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   const categories = await Category.find().lean();
   console.log(categories);
-  res.render('index', { title: 'App title', categories });
+  res.render('index', { title: 'Elbrus ZOO', categories });
 });
 
 module.exports = router;
