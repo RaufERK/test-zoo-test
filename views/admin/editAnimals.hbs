@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<div class="container">
+  <div id="animal-form">
+    <h2 class="ui header">Редактировать животное</h2>
+
+    <form action="/animals/edit/{{animal._id}}" method="POST" enctype="application/json" class="ui form">
+      <div class="field">
+        <label>Название животного</label>
+        <input type="text" name="name" placeholder="Введите название животного" value={{animal.name}}>
+      </div>
+
+      <div class="field">
+        <label>Название животного по-английски</label>
+        <input type="text" name="englishName" placeholder="Введите название животного (лат)"
+          value={{animal.englishName}}>
+      </div>
+
+      <div class="field">
+        <label>Выберите категорию</label>
+        <h4>Текущая категория: {{curCategory.title}}</h4>
+        <select name="categoryes">
+          {{#each category}}
+          <option value={{this._id}} selected={{#ifCond curCategory.title   this.title }} "selected"{{else}}"none" {{/ifCond}}>
+            {{this.title}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Описание животного</label>
+        <textarea name="description" cols="30" rows="10">{{animal.description}}</textarea>
+      </div>
+
+      {{!-- <div class="field">
+        <label>Фото животного</label>
+        <input type="file" name="filedata" multiple>
+      </div> --}}
+
+      <button class="ui button primary">Сохранить</button>
+    </form>
+  </div>
+</div>
