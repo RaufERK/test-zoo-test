@@ -17,7 +17,6 @@ if (mainContent) {
       const confirmDelete = confirm('Подтвердите удаление категории');
       if (confirmDelete) {
         const categoryId = event.target.dataset.id;
-        console.log('id ==> ', categoryId);
         const data = await fetch(`/admin/categories/delete/${categoryId}`);
         if (data.status === 200) {
           const categoryDiv = document.querySelector(`#segment${categoryId}`);
