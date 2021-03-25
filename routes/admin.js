@@ -52,19 +52,6 @@ router
     res.status(200).redirect('/admin');
   });
 
-router.post('/addCategory', upload.single('filedata'), async (req, res) => {
-  console.log('========req.file', req.file);
-  const { title, englishName, description } = req.body;
-  const newCategory = await Category.create({
-    title,
-    englishName,
-    description,
-    animals: [],
-    picture: req.file.path.slice(6),
-  });
-  console.log(newCategory);
-  res.redirect('/admin/categories?categoryAdded=1');
-});
 
 router
   .route('/animals/edit/:id')
@@ -95,6 +82,9 @@ router
     const categoty = await Category.find();
     const curCategory = categoty.find((el) => el.animals.includes(id));
 
+
+    // Блок при условии что категория не изменилась
+    if (curCategory._id == categoryes) {
       const animal = await Animal.findById(id);
       animal.name = name;
       animal.englishName = englishName;
@@ -117,6 +107,7 @@ router
     newCategory.animals.push(animal)
      await newCategory.save();
     res.status(200).redirect('/admin');
+
   });
 
   // Удаление животного 

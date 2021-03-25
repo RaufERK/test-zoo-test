@@ -12,7 +12,7 @@
 
   <div id="category-form" style='display:none'>
     <h2 class="ui header">Добавить категорию</h2>
-    <form action="/admin/addCategory" method="POST" class="ui form">
+    <form action="/admin/addCategory" method="POST" class="ui form" enctype="multipart/form-data">
       <div class="field">
         <label>Название категории</label>
         <input type="text" name="title">
@@ -25,7 +25,17 @@
 
       <div class="field">
         <label>Фото категории</label>
-        <input type="file" name="filedata">
+        <input type="file" name="filedata" />
+      </div>
+
+      <div class="field">
+        <label>Координаты для карты (через запятую)</label>
+        <input type="text" name="coordinates">
+      </div>
+
+      <div class="field">
+        <label>Ссылка на иконку (для карты)</label>
+        <input type="text" name="icon">
       </div>
 
       <div class="field">

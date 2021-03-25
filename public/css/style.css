@@ -104,7 +104,7 @@ nav li {
 
 .hero {
   height: calc(100vh - 3rem);
-  background: center center no-repeat url(../img/hero1.jpg);
+  background: center center no-repeat url(../img/hero5.jpg);
   background-size: cover;
 }
 
@@ -157,8 +157,8 @@ nav li {
   opacity: 0.9;
 }
 
-.btn:active,
-.btn:focus {
+button:active,
+button:focus {
   outline: none;
 }
 
@@ -267,6 +267,22 @@ form {
   margin: 15px 0;
   color: red;
   font-weight: bold;
+}
+
+.image-preview {
+  margin: 1em 0;
+  position: relative;
+  width: 150px;
+}
+
+.preview-close-btn {
+  color: red;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
 }
 
 @media (min-width: 900px) {

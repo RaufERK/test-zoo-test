@@ -5,13 +5,13 @@ const mainContent = document.querySelector('.maincontent');
 
 if (addCatBtn) {
   addCatBtn.addEventListener('click', () => {
-    console.log('click');
     categoryForm.classList.toggle('show');
   });
 }
 
 if (mainContent) {
   mainContent.addEventListener('click', async (event) => {
+    // удаление категории
     if (event.target.dataset.action === 'delete') {
       event.preventDefault();
       const confirmDelete = confirm('Подтвердите удаление категории');
@@ -23,6 +23,18 @@ if (mainContent) {
           categoryDiv.remove();
         }
       }
+    }
+    // редактирование категории, редактирование изображения
+    if (event.target.dataset.action === 'delete-preview-pic') {
+      event.preventDefault();
+
+      const picUrl = document.querySelector('#picUrl');
+      const previewPic = document.querySelector('#preview-pic');
+      const previewCloseBtn = document.querySelector('.preview-close-btn');
+
+      // picUrl.remove();
+      previewPic.remove();
+      previewCloseBtn.remove();
     }
   });
 }
