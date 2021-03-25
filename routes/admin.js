@@ -41,8 +41,8 @@ router
     await curCategory.save();
     // console.log(curCategory);
     // console.log(allPath);
-
-    res.status(200).send('Ok');
+      // res.redirect(`/animals/${englishName}`);
+    res.status(200).send('Ok')
   });
 
 router.post('/addCategory', upload.single('filedata'), async (req, res) => {
