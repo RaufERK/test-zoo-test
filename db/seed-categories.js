@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const colors = require('colors');
 const Category = require('../models/category.model');
 const Animal = require('../models/animals.model');
+const { update } = require('../models/animals.model');
 
 // const { DB_PATH, MOCK_DB } = process.env;
 
@@ -59,4 +60,24 @@ const seed = async () => {
   await Category.findOneAndUpdate({ englishName: 'mammals', animals: animals });
 };
 
-seed();
+// seed();
+
+const updateCategories = async () => {
+  await mongoose.connect(
+    'mongodb+srv://eagle:elbrus-eagles2021@cluster0.anpuf.mongodb.net/week3project?retryWrites=true&w=majority',
+    dbOptions,
+    () => {
+      console.log('Database connected'.yellow.bold);
+    }
+  );
+  const categories = await Category.updateOne(
+    { title: 'Паукообразные' },
+    {
+      coordinates: [50.81654081799782, 42.00059644187822],
+      icon:
+        'https://cdn4.iconfinder.com/data/icons/halloween-line-terror-night/512/Spider-512.png',
+    }
+  );
+};
+
+// updateCategories();
