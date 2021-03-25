@@ -15,11 +15,13 @@ router.get('/admin/categories/edit/:categoryId', async (req, res) => {
 });
 
 router.get('/admin/categories/delete/:categoryId', async (req, res) => {
-  const confirmDelete = confirm('Подтвердите удаление категории');
-  if (confirmDelete) {
-    const category = await Category.findByIdAndDelete({ _id: req.params.categoryId });
+  console.log('category to delete', req.params.categoryId);
+  try {
+    await Category.findByIdAndDelete({ _id: req.params.categoryId });
+    res.sendStatus(200);
+  } catch (err) {
+    res.send(500).json({ error: 'Не удалось удалить категорию' });
   }
-  res.redirect('/admin/categories');
 });
 
 router.post('/admin/editCategory', async (req, res) => {

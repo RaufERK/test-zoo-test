@@ -1,13 +1,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
 <script defer src="/js/admin.js"></script>
+
+
 <section class="hero-inner">
   <div class="container">
     <h1 class="inner-title">{{title}}</h1>
   </div>
 </section>
 
-<div class="container">
+<div class="container maincontent">
 {{> adminNavigation}}
 
   <div class="add-category">
@@ -42,14 +44,14 @@
   <div class="ui divider mydivider"></div>
 
 {{#each categories}}
-  <div class="ui segment">
+  <div class="ui segment" id='segment{{this._id}}'>
     <div class='category-block__admin'>
       <div>
         {{this.title}}
       </div> 
       <div>
         <a href='/admin/categories/edit/{{this._id}}'><i class="edit outline icon"></i></a>
-        <a href='/admin/categories/delete/{{this._id}}'><i class="close icon" style='color:red' title='удалить'></i></a>
+        <a href='#'><i data-action='delete' data-id='{{this._id}}' class="close icon" style='color:red' title='удалить'></i></a>
       </div>
     </div>
   </div>
