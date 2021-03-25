@@ -2,10 +2,18 @@ const tariff = document.querySelector('.tariff');
 const tariffWeekDays = document.querySelector('.tab-tariffWeekDays');
 const tariffDaysOff = document.querySelector('.tab-tariffDaysOff');
 const tariffEditForm = document.querySelectorAll('.tariffEdit');
+const summ = document.querySelector('#summ');
+const dateTicket = document.querySelector('#dateTicket');
+const childTicket = document.querySelector('#childTicket');
+const parentTicket = document.querySelector('#parentTicket');
+const buyTicket = document.querySelector('#buyTicket');
+const childTariffWeekDays = document.querySelector('#childTariffWeekDays');
+const parentTariffWeekDays = document.querySelector('#parentTariffWeekDays');
+const childTariffDaysOff = document.querySelector('#childTariffDaysOff');
+const parentTariffDaysOff = document.querySelector('#parentTariffDaysOff');
 
 if (tariff) {
   tariff.addEventListener('click', async (event) => {
-    console.log(123);
     if (event.target.id === 'tariffWeekDays') {
       tariffDaysOff.style.display = 'none';
       tariffWeekDays.style.display = '';
@@ -40,3 +48,37 @@ if (tariffEditForm) {
     });
   }
 }
+
+buyTicket.addEventListener('change', async (event) => {
+  const date = new Date(dateTicket.value);
+  if (date.getDay() === 0 || date.getDay() === 6) {
+    let sum =
+      Number(childTariffDaysOff.innerText) * childTicket.value +
+      parentTicket.value * Number(parentTariffDaysOff.innerText);
+    summ.innerHTML = `<h2>${sum} руб.</h2>`;
+  } else {
+    let sum =
+      Number(childTariffWeekDays.innerText) * childTicket.value +
+      parentTicket.value * Number(parentTariffWeekDays.innerText);
+    summ.innerHTML = `<h2>${sum} руб.</h2>`;
+  }
+});
+
+buyTicket.addEventListener('sumbit', async (event) => {
+  event.preventDefault();
+  const response = await fetch('/prices', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: event.target.name.value,
+      phone: event.target.phone.value,
+      date: event.target.date.value,
+      amountChild: event.target.childTicket.value,
+      amountParent: event.target.parentTicket.value,
+    }),
+  });
+  const jsonResponse = await response.json();
+  console.log(jsonResponse);
+});
