@@ -22,8 +22,8 @@
         <label>Выберите категорию</label>
         <h4>Текущая категория: {{curCategory.title}}</h4>
         <select name="categoryes">
-          {{#each category}}
-          <option value={{this._id}} selected={{#ifCond curCategory.title   this.title }} "selected"{{else}}"none" {{/ifCond}}>
+          {{#each editCategory}}
+          <option value={{this._id}} {{#if this.selected}}selected{{/if}}>
             {{this.title}}</option>
           {{/each}}
         </select>

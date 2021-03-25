@@ -23,33 +23,21 @@ router
   .route('/animals/edit/:id')
   .get(async (req, res) => {
     const { id } = req.params;
-    const animal = await Animal.findById(id).lean();
-    // console.log(animal);
-    const category = await Category.find(); //.lean();
-
+    const animal = await Animal.findById(id);
+    const category = await Category.find();
     const curCategory = category.find((el) => el.animals.includes(id));
-    // console.log('curCategory================>>>',curCategory);
 
-    // const editCategory = category.map((el) => {
-    //   const newObj = el.lean();
-
-    //   newObj.test = 'TEST';
-    //   console.log(
-    //     el.title,
-    //     newObj.title,
-    //     curCategory.title,
-    //     newObj.title === curCategory.title ? true : false
-    //   );
-    //   newObj.selectedCategory =
-    //     newObj.title === curCategory.title ? true : false;
-    //   // console.log(newObj);
-    //   // console.log('дескрипторы',Object.getOwnPropertyDescriptors(el));
-    //   return newObj;
-    // });
+    const editCategory = category.map(({_id, title}) => {
+      return {
+        _id,
+        title,
+        selected: title === curCategory.title ? true : false
+      }
+    });
 
     res.render('admin/editAnimals', {
       animal,
-      category,
+      editCategory,
       curCategory,
     });
   })

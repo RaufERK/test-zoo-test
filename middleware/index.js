@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo');
 const path = require('path');
 const { cookiesCleaner } = require('./auth');
 const { DB_PATH, MOCK_DB } = process.env;
+// const upload = require('./multer');
 
 const hbs = require('hbs');
 
@@ -42,6 +43,8 @@ module.exports = function (app) {
     // res.locals.userId = req.session.login;
     next();
   });
+
+  // app.use(upload.any());
 
   app.use(cookiesCleaner);
 
