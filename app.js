@@ -30,10 +30,10 @@ app.use('/', authRouter);
 app.use('/', animalRouter);
 app.use('/', tariffRouter);
 app.use('/', mapRouter);
-app.use('/', adminCategoriesRouter);
 
 app.use(sessionChecker);
 app.use('/admin', adminRouter);
+app.use('/', adminCategoriesRouter);
 
 useErrorHandlers(app);
 

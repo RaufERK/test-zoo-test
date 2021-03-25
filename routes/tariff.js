@@ -11,7 +11,7 @@ router
   .route('/admin/prices')
   .get(async (req, res) => {
     const tariffs = await Tariff.find();
-    res.render('tariffs/tariffEdit', {
+    res.render('admin/editTarrifs', {
       tariffs,
     });
   })

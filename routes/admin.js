@@ -8,7 +8,7 @@ router
   .route('/')
   .get(async (req, res) => {
     const categoty = await Category.find();
-    res.render('admin/adminPage', { categoty });
+    res.render('admin/adminPage', { title: 'Административная часть', categoty });
   })
   // Подключаем multer для routе '/admin'
   .post(upload.any('filedata'), async (req, res) => {
