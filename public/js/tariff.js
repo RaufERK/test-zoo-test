@@ -9,9 +9,13 @@ if (tariff) {
     if (event.target.id === 'tariffWeekDays') {
       tariffDaysOff.style.display = 'none';
       tariffWeekDays.style.display = '';
+      document.querySelector('#tariffWeekDays').style.opacity = 1;
+      document.querySelector('#dayOff').style.opacity = 0.5;
     }
     if (event.target.id === 'dayOff') {
       tariffDaysOff.style.display = '';
+      document.querySelector('#tariffWeekDays').style.opacity = 0.5;
+      document.querySelector('#dayOff').style.opacity = 1;
       tariffWeekDays.style.display = 'none';
     }
   });
