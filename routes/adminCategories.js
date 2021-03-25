@@ -55,7 +55,7 @@ router.post('/admin/editCategory', upload.single('filedata'), async (req, res) =
   const { title, englishName, coordinates, icon, description, picUrl } = req.body;
   let newPicture;
   if (req.file) {
-    await fs.rm(`../public${picUrl}`);
+    await fs.unlink(`http://localhost:3000/public${picUrl}`);
     newPicture = req.file.path.slice(6);
   } else {
     newPicture = picUrl;
