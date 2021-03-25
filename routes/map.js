@@ -5,3 +5,4 @@ router.route('/map').get((req, res) => {
 });
 
 module.exports = router;
+
