@@ -2,11 +2,11 @@
 
 
 <div class="container">
-{{> adminNavigation}}
+  {{> adminNavigation}}
   <div id="animal-form-edit">
     <h2 class="ui header">Редактировать животное</h2>
 
-    <form action="/admin/animals/edit/{{animal._id}}" method="POST" enctype="multipart/form-data" class="ui form">
+    <form action="/admin/animals/edit/{{animal._id}}" method="POST" class="ui form">
       <div class="field">
         <label>Название животного</label>
         <input type="text" name="name" placeholder="Введите название животного" value={{animal.name}}>
@@ -34,14 +34,18 @@
         <textarea name="description" cols="30" rows="10">{{animal.description}}</textarea>
       </div>
 
-      <div class="field">
+      {{!-- <div class="field">
         <label>Фото животного</label>
         <input type="file" name="filedata" multiple>
-      </div>
+      </div> --}}
 
       <div>
         {{#each animal.picture}}
-          <img src="{{this}}">
+        <div class='image-preview'>
+          <img src="{{this}}" alt="" width='150' id='preview-pic'>
+          <button class='preview-close-btn' data-action='delete-preview-pic'>X</button>
+        </div>
+        <input type='hidden' name='picUrl' value='{{this}}' id='picUrl'>
         {{/each}}
       </div>
 
