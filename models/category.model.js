@@ -6,8 +6,8 @@ const Category = new mongoose.Schema({
   picture: String,
   description: String,
   animals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Animal' }],
+  coordinates: Array,
+  icon: String,
 });
 
 module.exports = mongoose.model('Category', Category);
-
-
