@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const hbs = require('hbs');
 
+const { sessionChecker } = require('./middleware/auth');
+
 const useMiddleware = require('./middleware');
 
 const indexRouter = require('./routes/index');
@@ -26,10 +28,12 @@ connectDB();
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/', animalRouter);
-app.use('/admin', adminRouter);
 app.use('/', tariffRouter);
-app.use('/', adminCategoriesRouter);
 app.use('/', mapRouter);
+app.use('/', adminCategoriesRouter);
+
+app.use(sessionChecker);
+app.use('/admin', adminRouter);
 
 useErrorHandlers(app);
 
