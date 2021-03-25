@@ -240,6 +240,20 @@ form {
   object-fit: contain;
 }
 
+.admin-nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 0;
+  padding-left: 0;
+  margin: 2em 0 1em;
+}
+
+.admin-nav li {
+  list-style-type: none;
+  margin-right: 1.5em;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;

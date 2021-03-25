@@ -8,7 +8,6 @@ const { cookiesCleaner } = require('./auth');
 const { DB_PATH, MOCK_DB } = process.env;
 
 module.exports = function (app) {
-
   app.use(morgan('dev'));
 
   app.use(express.json());
