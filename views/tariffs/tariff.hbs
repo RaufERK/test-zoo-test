@@ -1,8 +1,10 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
 <section class="hero-inner">
   <div class="container">
     <h1 class="inner-title">Тарифы на посещение нашего зоопарка</h1>
   </div>
-</section>
+</section> 
 
 <div class="container">
   <div class="tariff">
@@ -10,16 +12,47 @@
     <button class='btn' id='dayOff' style="opacity:0.6">Тариф выходного дня</button>
     
     <div class="tab-tariffWeekDays">
-        <li>Стоимость детского билета: {{tariffWeekDays.priceToChildren}} рублей</li>
-        <li>Стоимость взрослого билета: {{tariffWeekDays.price}} рублей</li>
+        <li>Стоимость детского билета: <span id='childTariffWeekDays'>{{tariffWeekDays.priceToChildren}}</span> рублей</li>
+        <li>Стоимость взрослого билета: <span id="parentTariffWeekDays">{{tariffWeekDays.price}}</span> рублей</li>
     </div>
     <div class="tab-tariffDaysOff" style="display: none;">
-        <li>Стоимость детского билета: {{tariffDaysOff.priceToChildren}} рублей</li>
-        <li>Стоимость взрослого билета: {{tariffDaysOff.price}} рублей</li>
+        <li>Стоимость детского билета: <span  id="childTariffDaysOff">{{tariffDaysOff.priceToChildren}}</span>рублей</li>
+        <li>Стоимость взрослого билета: <span id="parentTariffDaysOff">{{tariffDaysOff.price}}</span> рублей</li>
     </div>
   </div>
 
-</div>
 
+
+<div class="container">
+  <h1>Купить билет</h1>
+ <form method="POST" class="ui form" id="buyTicket">
+    <div class="field">
+  <label for="priceToChildren">Имя</label>
+  <input type="text" name="name" required/>
+  </div>
+  <div class="field">
+  <label for="phone">Телефон</label>
+  <input type="tel" name="phone" required/>
+  </div>
+  <div class="field">
+  <label for="date">Дата посещения</label>
+  <input type="date" name="date" id="dateTicket"/>
+  </div>
+  <div class="field">
+  <label for="tariff">Количество детских билетов</label>
+  <input type="number" name="childTicket" id='childTicket'  value="0" min="0"/>
+  </div>
+  <div class="field">
+  <label for="tariff">Количество взрослых билетов</label>
+  <input type="number" name="parentTicket" id="parentTicket" value="0" min="0"/>
+  </div>
+  
+  <button class="ui button primary" data-edit="{{this._id}}">Купить</button>
+</form>
+<div id='summ'>
+  <h2>0 руб.</h2>`
+  </div>
+</div>
+</div>
 
 <script defer src="/js/tariff.js"></script>

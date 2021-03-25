@@ -33,7 +33,6 @@ router.get('/animals/:animalName', async (req, res) => {
 
 router.route('animal/:id').get(async (req, res) => {
   const animal = await Animal.findById(req.params.id);
-  console.log(animal);
 });
 
 module.exports = router;
