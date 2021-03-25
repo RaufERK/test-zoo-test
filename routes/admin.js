@@ -8,14 +8,33 @@ router
   .route('/')
   .get(async (req, res) => {
     const categoty = await Category.find();
-    res.render('admin/adminPage', { title: 'Административная часть', categoty });
+    const animals = await Animal.find();
+    const animalsWithCategory = animals.map(({ _id, name, englishName }) => {
+      const curCategory = categoty.find((el) => el.animals.includes(_id));
+      return {
+        _id,
+        name,
+        englishName,
+        titleCategory: curCategory.title,
+      };
+    });
+    res.render('admin/adminPage', {
+      title: 'Административная часть',
+      categoty,
+      animalsWithCategory,
+    });
   })
   // Подключаем multer для routе '/admin'
   .post(upload.any('filedata'), async (req, res) => {
     const { name, description, englishName, categoryes } = req.body;
 
     const allPath = req.files.map((el) => el.path.slice(6));
-    const newAnimal = await Animal.create({ name, description, englishName, picture: allPath });
+    const newAnimal = await Animal.create({
+      name,
+      description,
+      englishName,
+      picture: allPath,
+    });
 
     const curCategory = await Category.findById(categoryes);
     curCategory.animals.push(newAnimal._id);
@@ -39,5 +58,54 @@ router.post('/addCategory', upload.single('filedata'), async (req, res) => {
   console.log(newCategory);
   res.redirect('/admin/categories?categoryAdded=1');
 });
+
+
+
+
+router
+  .route('/animals/edit/:id')
+  .get(async (req, res) => {
+    const { id } = req.params;
+    const animal = await Animal.findById(id);
+    const category = await Category.find();
+    const curCategory = category.find((el) => el.animals.includes(id));
+
+    const editCategory = category.map(({_id, title}) => {
+      return {
+        _id,
+        title,
+        selected: title === curCategory.title ? true : false
+      }
+    });
+
+    res.render('admin/editAnimals', {
+      animal,
+      editCategory,
+      curCategory,
+    });
+  })
+  .post( async (req, res) => {
+    const { id } = req.params;
+    const { name, englishName, categoryes, description } = req.body;
+
+    const categoty = await Category.find();
+    const curCategory = categoty.find((el) => el.animals.includes(id));
+
+    // Блок при условии что категория не изменилась
+    if(curCategory._id == categoryes){
+      const animal = await Animal.findById(id);
+      animal.name = name;
+      animal.englishName = englishName;
+      animal.description = description;
+      await animal.save();
+      return res.redirect('/admin')
+    }
+
+
+    // Блок при условии что категория изменилась
+
+    // curCategory.animals
+    
+  });
 
 module.exports = router;

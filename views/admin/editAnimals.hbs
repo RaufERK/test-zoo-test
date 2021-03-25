@@ -6,7 +6,7 @@
   <div id="animal-form">
     <h2 class="ui header">Редактировать животное</h2>
 
-    <form action="/animals/edit/{{animal._id}}" method="POST" enctype="application/json" class="ui form">
+    <form action="/admin/animals/edit/{{animal._id}}" method="POST" enctype="application/json" class="ui form">
       <div class="field">
         <label>Название животного</label>
         <input type="text" name="name" placeholder="Введите название животного" value={{animal.name}}>

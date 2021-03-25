@@ -254,6 +254,15 @@ form {
   margin-right: 1.5em;
 }
 
+.td-category {
+  display: flex;
+  justify-content: space-between;
+}
+
+.td-category > span {
+  margin: 0 10px;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;
