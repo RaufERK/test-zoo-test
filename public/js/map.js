@@ -11,13 +11,12 @@ async function init() {
   const result = await (await fetch('/mapcategories')).json();
 
   for (let i = 0; i < result.length; i++) {
-    console.log(result[i]);
     let myPlacemark = new ymaps.Placemark(
       result[i].coordinates,
       {
         hintContent: result[i].title,
         balloonContent: [
-          `<div class='map'><a href='/${result[i].englishName}'>${result[i].title}</a></div>`,
+          `<div class='map'><a href='/category/${result[i].englishName}'>${result[i].title}</a></div>`,
         ],
       },
       {
