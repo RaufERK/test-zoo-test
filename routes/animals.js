@@ -6,10 +6,9 @@ const router = express.Router();
 
 router.get('/category/:categoryName', async (req, res) => {
   const { categoryName } = req.params;
-  const category = await Category.findOne({
-    englishName: categoryName,
-  }).populate('animals');
-  // const animalsWithPics =
+
+  const category = await Category.findOne({ englishName: categoryName }).populate('animals').lean();
+  category.animals.forEach((animal) => (animal.mainpic = animal.picture[0]));
   res.render('animals/category', { title: '', category });
 });
 
@@ -59,11 +58,19 @@ router
 
 router.get('/animals/:animalName', async (req, res) => {
   const { animalName: englishName } = req.params;
-  // console.log('animal name ======= ', animalName);
-
-  const animal = await Animal.findOne({ englishName });
+  const animal = await Animal.findOne({ englishName }).lean();
+  animal.pictureIndex = [];
+  animal.picture.forEach((picture, index) => {
+    animal.pictureIndex.push(index + 1);
+  });
   console.log(animal);
-  res.render('animals/animal', { title: '', animal });
+  res.render('animals/animal', { title: animal.name, animal });
+});
+
+
+router.route('animal/:id').get(async (req, res) => {
+  const animal = await Animal.findById(req.params.id);
+  console.log(animal);
 });
 
 module.exports = router;
