@@ -40,7 +40,11 @@ router
         picture: allPath,
       });
     } catch (error) {
-      return res.status(500).redirect('/admin?error_message=Животное с таким именем уже создано');
+
+      return res
+        .status(500)
+        .redirect('/admin?error_message=Животное с таким именем уже создано');
+
     }
 
     const curCategory = await Category.findById(categoryes);
