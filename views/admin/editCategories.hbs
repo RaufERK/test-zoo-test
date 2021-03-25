@@ -8,6 +8,7 @@
 </section>
 
 <div class="container">
+{{> adminNavigation}}
 
   <div class="add-category">
     <button class='ui button primary' id='add-category-btn'>Добавить новую категорию</button>
@@ -27,6 +28,11 @@
       </div>
 
       <div class="field">
+        <label>Фото категории</label>
+        <input type="file" name="filedata">
+      </div>
+
+      <div class="field">
         <label>Описание</label> 
         <textarea name="description" cols="30" rows="10"></textarea>
       </div>
@@ -43,7 +49,7 @@
       </div> 
       <div>
         <a href='/admin/categories/edit/{{this._id}}'><i class="edit outline icon"></i></a>
-        <a href=''><i class="close icon" style='color:red' title='удалить'></i></a>
+        <a href='/admin/categories/delete/{{this._id}}'><i class="close icon" style='color:red' title='удалить'></i></a>
       </div>
     </div>
   </div>

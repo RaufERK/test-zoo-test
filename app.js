@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const hbs = require('hbs');
 
 const useMiddleware = require('./middleware');
 
@@ -16,7 +17,9 @@ const connectDB = require('./db/mongo');
 const useErrorHandlers = require('./middleware/error-handlers');
 
 const app = express();
+
 useMiddleware(app);
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
 connectDB();
 

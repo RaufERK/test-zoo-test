@@ -13,21 +13,29 @@ router
   // Подключаем multer для routе '/admin'
   .post(upload.any('filedata'), async (req, res) => {
     const { name, description, englishName, categoryes } = req.body;
-    
+
     const allPath = req.files.map((el) => el.path.slice(6));
     const newAnimal = await Animal.create({ name, description, englishName, picture: allPath });
 
     const curCategory = await Category.findById(categoryes);
     curCategory.animals.push(newAnimal._id);
-    await curCategory.save()
+    await curCategory.save();
     // console.log(curCategory);
     // console.log(allPath);
 
     res.status(200).send('Ok');
   });
 
-router.post('/addCategory', async (req, res) => {
-  const newCategory = await Category.create(req.body);
+router.post('/addCategory', upload.single('filedata'), async (req, res) => {
+  console.log('========req.file', req.file);
+  const { title, englishName, description } = req.body;
+  const newCategory = await Category.create({
+    title,
+    englishName,
+    description,
+    animals: [],
+    picture: req.file.path.slice(6),
+  });
   console.log(newCategory);
   res.redirect('/admin/categories?categoryAdded=1');
 });

@@ -1,4 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<script defer src="/js/admin.js"></script>
+<section class="hero-inner">
+  <div class="container">
+    <h1 class="inner-title">{{title}}</h1>
+  </div>
+</section>
+
+<div class="container">
+  {{> adminNavigation}}
 
 <div class="container">
 <h1 class="ui header">Изменение тарифов</h1>
@@ -16,5 +25,6 @@
   <button class="ui button primary" data-edit="{{this._id}}">Изменить</button>
 </form>
 {{/each}}
+
 </div>
 <script defer src="/js/tariff.js"></script>

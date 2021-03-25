@@ -14,6 +14,14 @@ router.get('/admin/categories/edit/:categoryId', async (req, res) => {
   res.render('admin/editCategoryForm.hbs', { title: 'Редактирование категории', category });
 });
 
+router.get('/admin/categories/delete/:categoryId', async (req, res) => {
+  const confirmDelete = confirm('Подтвердите удаление категории');
+  if (confirmDelete) {
+    const category = await Category.findByIdAndDelete({ _id: req.params.categoryId });
+  }
+  res.redirect('/admin/categories');
+});
+
 router.post('/admin/editCategory', async (req, res) => {
   // const category = await Category.findOne({ _id: req.body.categoryId });
   await Category.findByIdAndUpdate(req.body.categoryId, req.body);
