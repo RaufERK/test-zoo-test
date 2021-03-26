@@ -10,7 +10,7 @@
 .blogSlides img {
   object-fit: cover;
   width: 100%;
-  height: 400px;
+  height: 450px;
 }
 
 /* Next & previous buttons */
@@ -46,7 +46,7 @@
 }
 
 /* Caption text */
-
+/* 
 .blog-slider__text {
   color: #f2f2f2;
   font-size: 15px;
@@ -55,7 +55,7 @@
   bottom: 8px;
   width: 100%;
   text-align: center;
-}
+} */
 
 /* Number text (1/3 etc) */
 
@@ -72,7 +72,7 @@
 .blogSlider__dots {
   max-width: 80%;
   text-align: center;
-  margin: 1em 0 3em;
+  margin: 4em 0 3em;
 }
 .blogSlider__dots--dot {
   cursor: pointer;
