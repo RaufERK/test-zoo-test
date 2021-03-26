@@ -27,31 +27,30 @@
   <h1>Купить билет</h1>
  <form method="POST" class="ui form" id="buyTicket">
     <div class="field">
-  <label for="priceToChildren">Имя</label>
-  <input type="text" name="name" required/>
+      <label for="priceToChildren">Имя</label>
+      <input type="text" name="name" required/>
   </div>
   <div class="field">
-  <label for="phone">Телефон</label>
-  <input type="tel" name="phone" required/>
+    <label for="phone">Телефон</label>
+    <input type="tel" name="phone" minlength="10" required/>
   </div>
   <div class="field">
-  <label for="date">Дата посещения</label>
-  <input type="date" name="date" id="dateTicket"/>
+    <label for="date">Дата посещения</label>
+    <input type="date" name="date" id="dateTicket"/>
   </div>
   <div class="field">
-  <label for="tariff">Количество детских билетов</label>
-  <input type="number" name="childTicket" id='childTicket'  value="0" min="0"/>
+    <label for="tariff">Количество детских билетов</label>
+    <input type="number" name="childTicket" id='childTicket'  value="0" min="0"/>
   </div>
   <div class="field">
-  <label for="tariff">Количество взрослых билетов</label>
-  <input type="number" name="parentTicket" id="parentTicket" value="0" min="0"/>
+    <label for="tariff">Количество взрослых билетов</label>
+    <input type="number" name="parentTicket" id="parentTicket" value="0" min="0"/>
   </div>
-  
-  <button class="ui button primary" data-edit="{{this._id}}">Купить</button>
+  <button class="ui button primary">Купить</button>
+  <div id='summ'>
+    <h2><span id='cost'>0</span> руб</h2>
+  </div>
 </form>
-<div id='summ'>
-  <h2>0 руб</h2>
-  </div>
 </div>
 </div>
 

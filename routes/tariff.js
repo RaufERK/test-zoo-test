@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Tariff = require('../models/tariffs.model');
 const Client = require('../models/client.model');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 router
   .route('/prices')
@@ -17,24 +19,33 @@ router
         date: new Date(req.body.date),
         amountChild: req.body.childTicket,
         amountParent: req.body.parentTicket,
+        sum: +req.body.sum,
       });
-      res.redirect('/');
+      res.status(200).json(client);
+    } catch (err) {
+      res.sendStatus(400);
+    }
+  });
+
+router
+  .route('/payment')
+  .get(async (req, res) => {
+    const client = await Client.findOne({ _id: req.query.id });
+    const sum = req.query.sum;
+    res.render('tariffs/payment', { sum, client });
+  })
+  .post(async (req, res) => {
+    try {
+      await Client.updateOne(
+        { _id: req.query.id },
+        {
+          paymentSum: +req.body.paymentSum,
+        }
+      );
     } catch (err) {
       console.log(err);
     }
   });
-
-  router
-    .route('/payment')
-    .get(async (req, res) => {
-      res.render('tariffs/payment');
-    })
-    // .post(async (req, res) => {
-    //   try {
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // });
 
 router
   .route('/admin/prices')
@@ -59,6 +70,5 @@ router
       console.log(err);
     }
   });
-
 
 module.exports = router;
