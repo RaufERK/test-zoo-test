@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 
 // const { sessionChecker } = require('./middleware/auth');
 
-// const useMiddleware = require('./middleware');
+const useMiddleware = require('./middleware');
 
 // const indexRouter = require('./routes/index');
 // const authRouter = require('./routes/auth');
@@ -23,7 +23,7 @@ const connectDB = require('./db/mongo');
 
 const app = express();
 
-// useMiddleware(app);
+useMiddleware(app);
 // hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
 connectDB();
