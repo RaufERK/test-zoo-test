@@ -2,7 +2,7 @@ const tariff = document.querySelector('.tariff');
 const tariffWeekDays = document.querySelector('.tab-tariffWeekDays');
 const tariffDaysOff = document.querySelector('.tab-tariffDaysOff');
 const tariffEditForm = document.querySelectorAll('.tariffEdit');
-const summ = document.querySelector('#summ');
+const summ = document.querySelector('#cost');
 const dateTicket = document.querySelector('#dateTicket');
 const childTicket = document.querySelector('#childTicket');
 const parentTicket = document.querySelector('#parentTicket');
@@ -11,6 +11,7 @@ const childTariffWeekDays = document.querySelector('#childTariffWeekDays');
 const parentTariffWeekDays = document.querySelector('#parentTariffWeekDays');
 const childTariffDaysOff = document.querySelector('#childTariffDaysOff');
 const parentTariffDaysOff = document.querySelector('#parentTariffDaysOff');
+const payment = document.querySelector('#payment');
 
 if (tariff) {
   tariff.addEventListener('click', async (event) => {
@@ -58,16 +59,16 @@ buyTicket.addEventListener('change', async (event) => {
     let sum =
       Number(childTariffDaysOff.innerText) * childTicket.value +
       parentTicket.value * Number(parentTariffDaysOff.innerText);
-    summ.innerHTML = `<h2>${sum} руб.</h2>`;
+    summ.innerText = sum;
   } else {
     let sum =
       Number(childTariffWeekDays.innerText) * childTicket.value +
       parentTicket.value * Number(parentTariffWeekDays.innerText);
-    summ.innerHTML = `<h2>${sum} руб.</h2>`;
+    summ.innerText = sum;
   }
 });
 
-buyTicket.addEventListener('sumbit', async (event) => {
+buyTicket.addEventListener('submit', async (event) => {
   event.preventDefault();
   const response = await fetch('/prices', {
     method: 'POST',
@@ -80,8 +81,20 @@ buyTicket.addEventListener('sumbit', async (event) => {
       date: event.target.date.value,
       amountChild: event.target.childTicket.value,
       amountParent: event.target.parentTicket.value,
+      sum: summ.innerText,
     }),
   });
   const jsonResponse = await response.json();
-  console.log(jsonResponse);
+  window.location = `/payment?id=${jsonResponse._id}&sum=${summ.innerText}`
 });
+
+payment.addEventListener('submit',async (event)=>{
+  event.preventDefault();
+  const ftch = await fetch('/payment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({paymentSum: document.querySelector("#paymentSum").innerText})
+  })
+})

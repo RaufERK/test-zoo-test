@@ -1,27 +1,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
   <div class="container">
-    <h2>Плательщик: </h2>
-    <h2>Сумма оплаты: руб.</h2>
+    <h2>Плательщик: {{client.name}}</h2>
+    <h2>Сумма оплаты: <span id="paymentSum">{{sum}}</span> руб</h2>
  <form method="POST" class="ui form" id="payment">
     <div class="field">
   <label for="cardNumber">Номер карты</label>
-  <input type="number" name="cardNumber" pattern="[0-9]*" required/>
+  <input type="number" name="cardNumber" pattern="[0-9]*" placeholder="XXXX XXXX XXXX XXXX" required/>
   </div>
   <div class="field">
   <label for="fio">Держатель карты</label>
-  <input type="text" name="cardFio" maxlength="20" required/>
+  <input type="text" name="cardFio" maxlength="20" placeholder="IVAN IVANOV" required/>
   </div>
   <div class="field">
-  <label for="date">Срок действия</label>
-  <input type="date" name="cardDate" id="dateCard" required/>
+  <label for="cardDate">Срок действия</label>
+  <input type="text" name="cardDate" pattern='[1-12]{2}/[20][2-9]{1}[0-9]{1}' id="cardDate" placeholder="03/21" prequired/>
   </div>
   <div class="field">
   <label for="cvc">CVC</label>
-  <input type="password" name="cvc" id='cvc' required/>
+  <input type="password" name="cvc" id='cvc' placeholder="123" maxlength="3" required/>
   </div>
-  
-  <button class="ui button primary" data-edit="{{this._id}}">Оплатить</button>
+  <button class="ui button primary">Оплатить</button>
 </form>
 </div>
 
