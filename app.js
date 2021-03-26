@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const hbs = require('hbs');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const { sessionChecker } = require('./middleware/auth');
 
@@ -30,6 +32,16 @@ app.use('/', authRouter);
 app.use('/', animalRouter);
 app.use('/', tariffRouter);
 app.use('/', mapRouter);
+app.use(cookieParser());
+app.use(
+  session({
+    // эту переменную нужно в дотЭнв запихнуть
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: false,
+    cookie: { secure: false, maxAge: 600000 },
+  })
+);
 
 app.use(sessionChecker);
 app.use('/admin', adminRouter);

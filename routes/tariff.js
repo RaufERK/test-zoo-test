@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const Tariff = require('../models/tariffs.model');
 const Client = require('../models/client.model');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 router
   .route('/prices')
@@ -21,6 +19,7 @@ router
         amountParent: req.body.parentTicket,
         sum: +req.body.sum,
       });
+      req.session.clientId = client._id;
       res.status(200).json(client);
     } catch (err) {
       res.sendStatus(400);
@@ -30,18 +29,24 @@ router
 router
   .route('/payment')
   .get(async (req, res) => {
-    const client = await Client.findOne({ _id: req.query.id });
-    const sum = req.query.sum;
-    res.render('tariffs/payment', { sum, client });
+    if (req.session.clientId) {
+      const client = await Client.findOne({ _id: req.query.id });
+      const sum = req.query.sum;
+      res.render('tariffs/payment', { sum, client });
+    } else {
+      res.redirect('/prices');
+    }
   })
+
   .post(async (req, res) => {
     try {
       await Client.updateOne(
         { _id: req.query.id },
         {
-          paymentSum: +req.body.paymentSum,
+          paymentSum: +req.query.sum,
         }
       );
+      res.send('Оплата прошла успешно. Ждем вас в нашем зоопарке');
     } catch (err) {
       console.log(err);
     }

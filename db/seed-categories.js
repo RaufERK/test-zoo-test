@@ -4,6 +4,7 @@ const Category = require('../models/category.model');
 const Animal = require('../models/animals.model');
 const { update } = require('../models/animals.model');
 
+// надо использовать эти переменные
 // const { DB_PATH, MOCK_DB } = process.env;
 
 const dbOptions = {
@@ -13,6 +14,7 @@ const dbOptions = {
 
 const seed = async () => {
   await mongoose.connect(
+    //адресс базы данных брать из переменной дотЭнв
     'mongodb+srv://eagle:elbrus-eagles2021@cluster0.anpuf.mongodb.net/week3project?retryWrites=true&w=majority',
     dbOptions,
     () => {
