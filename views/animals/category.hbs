@@ -1,42 +1,41 @@
 <section class="hero-inner">
-      <div class="container">
-        <h1 class="inner-title">{{category.title}}</h1>
-      </div>
-    </section>
+  <div class="container">
+    <h1 class="inner-title">{{category.title}}</h1>
+  </div>
+</section>
 
-    <section class="animal-types">
-      <div class="container">
-        <a href="/animals">Все категории</a>/
-        <!-- Animal Types -->
-        {{#if category.description}}
-        <p>
-          {{category.description}}
-        </p>
+<div class='breadcrumbs container'>
+    <a href="/animals">Все животные</a> /
+</div>
+
+<div class="container innerpage">
+  <!-- Animal Types -->
+  {{#if category.description}}
+    <div class='category_description'>{{category.description}}</div>
+  {{/if}}
+
+  <div class="animal-types">
+    {{!-- {{#unless category.animals}}
+    <p>Животных данной категории пока не завезли</p>
+    {{/unless}} --}}
+        
+
+    {{#each category.animals}}
+    <div class="animal-type">
+      <a href="/animals/{{this.englishName}}">
+
+        {{#if this.mainpic}}
+          <div class='img'><img src="{{this.mainpic}}" alt="" class="animal-type__img"/></div>
+        {{else}}
+          <img src="/img/nophoto.jpg" alt="" class="animal-type__img" />
         {{/if}}
-
-        <div class="animal-types">
-          {{#unless category.animals}}
-          <p>Животных данной категории пока не завезли</p>
-          {{/unless}}
-              
-
-          {{#each category.animals}}
-          <div class="animal-type">
-            <a href="/animals/{{this.englishName}}">
-
-              {{#if this.mainpic}}
-                <div class='img'><img src="{{this.mainpic}}" alt="" class="animal-type__img"/></div>
-              {{else}}
-                <img src="/img/nophoto.jpg" alt="" class="animal-type__img" />
-              {{/if}}
-            </a>
-            <div class="animal-type__title">
-              <a href="/animals/{{this.englishName}}">{{this.name}}</a>
-            </div>
-          </div>
-          {{/each}}
-
-        </div>
-        <!-- End Animal Types -->
+      </a>
+      <div class="animal-type__title">
+        <a href="/animals/{{this.englishName}}">{{this.name}}</a>
       </div>
-    </section>
+    </div>
+    {{/each}}
+
+  </div>
+  <!-- End Animal Types -->
+</div>
