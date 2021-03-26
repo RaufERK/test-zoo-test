@@ -11,7 +11,7 @@ editForm.addEventListener('click', (e) => {
 })
 
 addPicForm.addEventListener('click', (e) => {
-  if(e.target.id === 'add-animal-pic'){
+  if(e.target.id === 'add-animal'){
     addPicForm.style.display = 'none';
     editForm.style.display = 'block';
   }

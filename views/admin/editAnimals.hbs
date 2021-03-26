@@ -57,11 +57,12 @@
     <div class="add-animal">
       <button class='ui button primary' id='add-animal'>Редактировать животное</button>
     </div>
-    <form action="/admin/animals/add-pic/{{animal._id}}" method="POST" enctype="multipart/form-data" class="ui form">
+    <form action="/admin/animals/add-pic/{{animal._id}}?name={{animal.englishName}}" method="POST" enctype="multipart/form-data" class="ui form">
       <div class="field">
         <h2 class="ui header">Добавить изображение {{{animal.name}}}</h2>
         <label>Фото животного</label>
         <input type="file" name="filedata" multiple>
+        <button class="ui button primary">Добавить</button>
       </div>
     </form>
   </div>

@@ -13,7 +13,9 @@ const storageConfig = multer.diskStorage({
   // Устанавливаем правила именования файлов
   filename: (req, file, cb) => {
     const { englishName } = req.body;
-    cb(null, `${englishName}-${file.originalname}`);
+    const { name } = req.query;
+    const addName = englishName === undefined ? name : englishName;
+    cb(null, `${addName}-${file.originalname}`);
   },
 });
 
