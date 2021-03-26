@@ -1,15 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const { get } = require('mongoose');
-// const hbs = require('hbs');
-// const session = require('express-session');
-// const cookieParser = require('cookie-parser');
+const hbs = require('hbs');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // const { sessionChecker } = require('./middleware/auth');
 
-// const useMiddleware = require('./middleware');
+const useMiddleware = require('./middleware');
 
-// const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 // const authRouter = require('./routes/auth');
 // const animalRouter = require('./routes/animals');
 // const adminRouter = require('./routes/admin');
@@ -18,17 +18,17 @@ const { get } = require('mongoose');
 // const mapRouter = require('./routes/map');
 
 const { PORT } = process.env;
-// const connectDB = require('./db/mongo');
+const connectDB = require('./db/mongo');
 // const useErrorHandlers = require('./middleware/error-handlers');
 
 const app = express();
 
-// useMiddleware(app);
+useMiddleware(app);
 // hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
-// connectDB();
+connectDB();
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 // app.use('/', authRouter);
 // app.use('/', animalRouter);
 // app.use('/', tariffRouter);
