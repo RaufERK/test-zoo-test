@@ -119,6 +119,12 @@ router
 
   router.get('/animals/delete/image/:id', async (req, res) => {
     console.log(req.params);
+    const { id } = req.params;
+    const { srcDel } = req.query;
+
+    const animal = await Animal.findById(id);
+    const pic = animal.picture.filter(el => el === srcDel);
+    console.log(pic);
   });
 
 // Удаление животного

@@ -40,7 +40,7 @@
         <input type="file" name="filedata" multiple>
       </div> --}}
 
-      <div id="animal-pic">
+      <div id="animal-pic" data-animal-id="{{animal._id}}">
         {{#each animal.picture}}
         <div class='image-preview'>
           <img src="{{this}}" alt="" width='150' id='preview-pic'>
