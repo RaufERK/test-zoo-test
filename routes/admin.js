@@ -29,35 +29,34 @@ router
   })
   // Подключаем multer для routе '/admin'
   .post(upload.any('filedata'), async (req, res) => {
-    console.log(req.body);
-    console.log(req.body);
+    const { name, description, englishName, categoryes } = req.body;
 
-    // const { name, description, englishName, categoryes } = req.body;
+    const allPath = req.files.map((el) => el.path.slice(6));
+    let newAnimal;
+    try {
+      newAnimal = await Animal.create({
+        name,
+        description,
+        englishName,
+        picture: allPath,
+        category: categoryes,
+      });
+    } catch (error) {
+      console.log(error.message);
+      const errorMessage = error.message.includes(`name: "${name}"`)
+        ? `Животное с именем ${name} уже создано`
+        : `Животное с именем ${englishName} уже создано`;
+      return res.status(500).redirect(`/admin?error_message=${errorMessage}`);
+    }
 
-    // const allPath = req.files.map((el) => el.path.slice(6));
-    // let newAnimal;
-    // try {
-    //   newAnimal = await Animal.create({
-    //     name,
-    //     description,
-    //     englishName,
-    //     picture: allPath,
-    //   });
-    // } catch (error) {
-    //   console.log(error.message);
-    //   const errorMessage = error.message.includes(`name: "${name}"`) ? `Животное с именем ${name} уже создано` : `Животное с именем ${englishName} уже создано`
-    //   return res
-    //     .status(500)
-    //     .redirect(`/admin?error_message=${errorMessage}`);
-    // }
+    const curCategory = await Category.findById(categoryes);
+    curCategory.animals.push(newAnimal._id);
+    await curCategory.save();
+    // console.log(curCategory);
+    // console.log(allPath);
+    // res.redirect(`/animals/${englishName}`);
+    res.status(200).redirect('/admin');
 
-    // const curCategory = await Category.findById(categoryes);
-    // curCategory.animals.push(newAnimal._id);
-    // await curCategory.save();
-    // // console.log(curCategory);
-    // // console.log(allPath);
-    // // res.redirect(`/animals/${englishName}`);
-    // res.status(200).redirect('/admin');
   });
 
 router.get('/animals/edit/:id');
@@ -118,24 +117,20 @@ router
     }
   });
 
-router.post(
-  '/animals/add-pic/:id',
-  upload.any('filedata'),
-  async (req, res) => {
-    const { id } = req.params;
-    const allPath = req.files.map((el) => el.path.slice(6));
-    console.log(allPath);
+router.post('/animals/add-pic/:id', upload.any('filedata'), async (req, res) => {
+  const { id } = req.params;
+  const allPath = req.files.map((el) => el.path.slice(6));
+  console.log(allPath);
 
-    const animal = await Animal.findById(id);
-    animal.picture = [...animal.picture, ...allPath];
-    try {
-      await animal.save();
-      res.status(200).redirect(`/admin/animals/edit/${id}`)
-    } catch (error) {
-      res.sendStatus(200);
-    }
+  const animal = await Animal.findById(id);
+  animal.picture = [...animal.picture, ...allPath];
+  try {
+    await animal.save();
+    res.status(200).redirect(`/admin/animals/edit/${id}`);
+  } catch (error) {
+    res.sendStatus(200);
   }
-);
+});
 
 // Удаление картинки животного
 
