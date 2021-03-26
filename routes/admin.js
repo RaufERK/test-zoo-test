@@ -91,17 +91,17 @@ router
     const curCategory = categoty.find((el) => el.animals.includes(id));
 
     // Блок при условии что категория не изменилась
-    if (curCategory._id == categoryes) {
       const animal = await Animal.findById(id);
       animal.name = name;
       animal.englishName = englishName;
       animal.description = description;
+      animal.category = categoryes;
       await animal.save();
 
       // Блок при условии что категория не изменилась
-      if (curCategory._id == categoryes) {
-        return res.redirect('/admin');
-      }
+      // if (curCategory._id == categoryes) {
+      //   return res.redirect('/admin');
+      // }
 
       // Блок при условии что категория изменилась
 
@@ -114,7 +114,6 @@ router
       newCategory.animals.push(animal);
       await newCategory.save();
       res.status(200).redirect('/admin');
-    }
   });
 
 router.post('/animals/add-pic/:id', upload.any('filedata'), async (req, res) => {
