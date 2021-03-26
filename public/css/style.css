@@ -285,6 +285,11 @@ form {
   background: transparent;
 }
 
+.animal-type__img {
+  border: 1px solid var(--first-color);
+  padding: 5px;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;
