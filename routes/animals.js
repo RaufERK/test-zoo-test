@@ -28,7 +28,7 @@ router.get('/animals/:animalName', async (req, res) => {
   const resultCategory = category.find((el) => el.animals.includes(animal._id));
   const onlyOnePicture = animal.picture.length === 1;
   // const moreAnimals = category.filter((anml) => anml !== animal._id);
-  console.log('moreAnimals', resultCategory.animals);
+  console.log('moreAnimals', resultCategory);
   res.render('animals/animal', { title: animal.name, animal, resultCategory, onlyOnePicture });
 });
 
