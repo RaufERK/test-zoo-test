@@ -221,14 +221,14 @@ form {
 }
 
 .img {
-  margin: 10px;
+  margin-right: 10px;
   padding: 0;
   position: relative;
-  width: 200px;
+  width: 280px;
   height: 200px;
   background: white;
-  border: 1px solid var(--first-color);
-  border-radius: 3px;
+  /* border: 1px solid var(--first-color); */
+  /* border-radius: 3px; */
 }
 .img img {
   position: absolute;
@@ -288,6 +288,10 @@ form {
 .animal-type__img {
   border: 1px solid var(--first-color);
   padding: 5px;
+}
+
+.innerpage {
+  min-height: calc(100vh - 267px);
 }
 
 @media (min-width: 900px) {
