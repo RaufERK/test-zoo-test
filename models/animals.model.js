@@ -9,6 +9,7 @@ const animalSchema = new mongoose.Schema({
   englishName: { type: String, required: true, unique: true },
   description: String,
   picture: [],
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
 });
 
 module.exports = mongoose.model('Animal', animalSchema);

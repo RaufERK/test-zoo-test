@@ -19,7 +19,7 @@ hbs.registerHelper('ifCond', function (v1, v2, options) {
 });
 
 module.exports = function (app) {
-  app.use(morgan('dev'));
+  // app.use(morgan('dev'));
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
