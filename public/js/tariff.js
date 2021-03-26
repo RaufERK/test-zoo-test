@@ -85,16 +85,22 @@ buyTicket.addEventListener('submit', async (event) => {
     }),
   });
   const jsonResponse = await response.json();
-  window.location = `/payment?id=${jsonResponse._id}&sum=${summ.innerText}`
+  window.location = `/payment?id=${jsonResponse._id}&sum=${summ.innerText}`;
 });
 
-payment.addEventListener('submit',async (event)=>{
-  event.preventDefault();
-  const ftch = await fetch('/payment', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({paymentSum: document.querySelector("#paymentSum").innerText})
-  })
-})
+if (payment) {
+  payment.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    console.log(document.querySelector('#paymentSum').innerText)
+    const ftch = await fetch('/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        paymentSum: document.querySelector('#paymentSum').innerText,
+      }),
+    });
+    const jsonResponse = await ftch.json();
+  });
+}

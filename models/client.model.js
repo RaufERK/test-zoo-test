@@ -7,7 +7,7 @@ const ClientSchema = new mongoose.Schema({
   date: Date,
   amountChild: Number,
   amountParent: Number,
-  paymentSum: {type: Number, default: 0}
+  paymentSum: {type: Number, default: 0},
 });
 
 module.exports = mongoose.model('Client', ClientSchema);
