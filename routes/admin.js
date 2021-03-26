@@ -29,32 +29,35 @@ router
   })
   // Подключаем multer для routе '/admin'
   .post(upload.any('filedata'), async (req, res) => {
-    const { name, description, englishName, categoryes } = req.body;
+    console.log(req.body);
+    console.log(req.body);
 
-    const allPath = req.files.map((el) => el.path.slice(6));
-    let newAnimal;
-    try {
-      newAnimal = await Animal.create({
-        name,
-        description,
-        englishName,
-        picture: allPath,
-      });
-    } catch (error) {
-      console.log(error.message);
-      const errorMessage = error.message.includes(`name: "${name}"`) ? `Животное с именем ${name} уже создано` : `Животное с именем ${englishName} уже создано`
-      return res
-        .status(500)
-        .redirect(`/admin?error_message=${errorMessage}`);
-    }
+    // const { name, description, englishName, categoryes } = req.body;
 
-    const curCategory = await Category.findById(categoryes);
-    curCategory.animals.push(newAnimal._id);
-    await curCategory.save();
-    // console.log(curCategory);
-    // console.log(allPath);
-    // res.redirect(`/animals/${englishName}`);
-    res.status(200).redirect('/admin');
+    // const allPath = req.files.map((el) => el.path.slice(6));
+    // let newAnimal;
+    // try {
+    //   newAnimal = await Animal.create({
+    //     name,
+    //     description,
+    //     englishName,
+    //     picture: allPath,
+    //   });
+    // } catch (error) {
+    //   console.log(error.message);
+    //   const errorMessage = error.message.includes(`name: "${name}"`) ? `Животное с именем ${name} уже создано` : `Животное с именем ${englishName} уже создано`
+    //   return res
+    //     .status(500)
+    //     .redirect(`/admin?error_message=${errorMessage}`);
+    // }
+
+    // const curCategory = await Category.findById(categoryes);
+    // curCategory.animals.push(newAnimal._id);
+    // await curCategory.save();
+    // // console.log(curCategory);
+    // // console.log(allPath);
+    // // res.redirect(`/animals/${englishName}`);
+    // res.status(200).redirect('/admin');
   });
 
 router.get('/animals/edit/:id');
@@ -155,8 +158,18 @@ router.get('/animals/delete/image/:id', async (req, res) => {
 // Удаление животного
 
 router.get('/animals/delete/:id', async (req, res) => {
+
+  const { id } = req.params;
+
+  const categoty = await Category.find();
+  const curCategory = categoty.find((el) => el.animals.includes(id));
+
+  const newArray = curCategory.animals.filter((el) => el._id != id);
+  curCategory.animals = newArray;
+  await curCategory.save();
+
   try {
-    await Animal.findByIdAndDelete(req.params.id);
+    await Animal.findByIdAndDelete(id);
     res.redirect('/admin');
   } catch (error) {
     res.status(500).redirect('/');
