@@ -3,7 +3,7 @@
 .blog-slider__container {
   max-width: 100%;
   position: relative;
-  height: 400px;
+  margin-bottom: 1em;
 }
 
 .blogSlides img {
@@ -49,7 +49,7 @@
 .blogSlider__dots {
   max-width: 80%;
   text-align: center;
-  margin: 4em 0 3em;
+  margin: 0 0 3em;
 }
 .blogSlider__dots--dot {
   cursor: pointer;
