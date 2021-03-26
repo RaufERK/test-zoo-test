@@ -1,26 +1,22 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const MongoStore = require('connect-mongo');
 const path = require('path');
-const { cookiesCleaner } = require('./auth');
+// const { cookiesCleaner } = require('./auth');
 const { DB_PATH, MOCK_DB } = process.env;
 // const upload = require('./multer');
-
-const hbs = require('hbs');
-
 
 module.exports = function (app) {
   // app.use(morgan('dev'));
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use(cookieParser());
+  // app.use(cookieParser());
 
   app.use(
     session({
-      
       //Вынести в дотЭнв
       secret: 'keyboard cat',
       resave: true,
@@ -30,7 +26,7 @@ module.exports = function (app) {
     })
   );
 
-  app.use(cookiesCleaner);
+  // app.use(cookiesCleaner);
 
   // middleware for transfering sessions to all hbs
   app.use((req, res, next) => {
@@ -41,7 +37,7 @@ module.exports = function (app) {
 
   // app.use(upload.any());
 
-  app.use(cookiesCleaner);
+  // app.use(cookiesCleaner);
 
   // Подключаем статику
   app.use(express.static(path.join(__dirname, '..', 'public')));
