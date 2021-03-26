@@ -38,5 +38,5 @@ app.use('/', adminCategoriesRouter);
 useErrorHandlers(app);
 
 app.listen(PORT || 3000, () => {
-  console.log(`server started at port ${PORT}`.green);
+  console.log(`server started at port ${PORT}`);
 });

@@ -63,19 +63,14 @@ const seed = async () => {
 // seed();
 
 const updateCategories = async () => {
-  await mongoose.connect(
-    'mongodb+srv://eagle:elbrus-eagles2021@cluster0.anpuf.mongodb.net/week3project?retryWrites=true&w=majority',
-    dbOptions,
-    () => {
-      console.log('Database connected'.yellow.bold);
-    }
-  );
+  await mongoose.connect('', dbOptions, () => {
+    console.log('Database connected'.yellow.bold);
+  });
   const categories = await Category.updateOne(
     { title: 'Паукообразные' },
     {
       coordinates: [50.81654081799782, 42.00059644187822],
-      icon:
-        'https://cdn4.iconfinder.com/data/icons/halloween-line-terror-night/512/Spider-512.png',
+      icon: 'https://cdn4.iconfinder.com/data/icons/halloween-line-terror-night/512/Spider-512.png',
     }
   );
 };

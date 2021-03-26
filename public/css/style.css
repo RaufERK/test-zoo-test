@@ -177,6 +177,7 @@ button:focus {
 }
 
 .animal-type {
+  max-width: 350px;
 }
 
 .animal-type img {
