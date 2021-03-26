@@ -5,6 +5,9 @@
 <div class="container">
   {{> adminNavigation}}
   <div id="animal-form-edit">
+    <div class="add-animal">
+      <button class='ui button primary' id='add-animal-pic'>Добавить изображения</button>
+    </div>
     <h2 class="ui header">Редактировать животное</h2>
 
     <form action="/admin/animals/edit/{{animal._id}}" method="POST" class="ui form">
@@ -35,12 +38,7 @@
         <textarea name="description" cols="30" rows="10">{{animal.description}}</textarea>
       </div>
 
-      {{!-- <div class="field">
-        <label>Фото животного</label>
-        <input type="file" name="filedata" multiple>
-      </div> --}}
-
-      <div id="animal-pic">
+      <div id="animal-pic" data-animal-id="{{animal._id}}">
         {{#each animal.picture}}
         <div class='image-preview'>
           <img src="{{this}}" alt="" width='150' id='preview-pic'>
@@ -51,6 +49,20 @@
       </div>
 
       <button class="ui button primary">Сохранить</button>
+    </form>
+  </div>
+
+
+  <div class="wrap-add-pic">
+    <div class="add-animal">
+      <button class='ui button primary' id='add-animal'>Редактировать животное</button>
+    </div>
+    <form action="/admin/animals/add-pic/{{animal._id}}" method="POST" enctype="multipart/form-data" class="ui form">
+      <div class="field">
+        <h2 class="ui header">Добавить изображение {{{animal.name}}}</h2>
+        <label>Фото животного</label>
+        <input type="file" name="filedata" multiple>
+      </div>
     </form>
   </div>
 </div>

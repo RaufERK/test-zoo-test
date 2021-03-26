@@ -1,25 +1,25 @@
 <section class="hero-inner">
-      <div class="container">
-        <h1 class="inner-title">Виды животных, представленные в нашем зоопарке</h1>
-      </div>
-    </section>
+  <div class="container">
+    <h1 class="inner-title">Виды животных, представленные в нашем зоопарке</h1>
+  </div>
+</section>
 
-    <section class="animal-types">
-      <div class="container">
-        <p>
-          В нашем зоопарке представлены различные виды животных, населяющих нашу планету. Добро пожаловать и, пожалуйста, не забывайте - животных просьба не кормить.
-        </p>
+<section class="innerpage">
+  <div class="container">
+    <p>
+      В нашем зоопарке представлены различные виды животных, населяющих нашу планету. Добро пожаловать и, пожалуйста, не забывайте - животных просьба не кормить.
+    </p>
 
-        <div class="animal-types">
-          {{#each categories}}
-          <div class="animal-type">
-            <a href="/category/{{this.englishName}}"><img src="{{this.picture}}" alt="" class="animal-type__img" /></a>
-            <div class="animal-type__title">
-              <a href="/category/{{this.englishName}}">{{this.title}}</a>
-            </div>
-          </div>
-          {{/each}}
+    <div class="animal-types">
+      {{#each categories}}
+      <div class="animal-type">
+        <a href="/category/{{this.englishName}}"><img src="{{this.picture}}" alt="" class="animal-type__img" /></a>
+        <div class="animal-type__title">
+          <a href="/category/{{this.englishName}}">{{this.title}}</a>
         </div>
-        <!-- End Animal Types -->
       </div>
-    </section>
+      {{/each}}
+    </div>
+    <!-- End Animal Types -->
+  </div>
+</section>
