@@ -295,6 +295,14 @@ form {
   margin-left: 2em;
 }
 
+.wrap-add-pic {
+  display: none;
+}
+
+.wrap-add-pic > .add-animal {
+  margin-bottom: 15px;
+}
+
 @media (min-width: 900px) {
   .header .container {
     display: flex;

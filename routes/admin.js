@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const fs = require('fs').promises;
 
 const Animal = require('../models/animals.model');
 const Category = require('../models/category.model');
@@ -40,11 +41,9 @@ router
         picture: allPath,
       });
     } catch (error) {
-
       return res
         .status(500)
         .redirect('/admin?error_message=Животное с таким именем уже создано');
-
     }
 
     const curCategory = await Category.findById(categoryes);
@@ -56,7 +55,7 @@ router
     res.status(200).redirect('/admin');
   });
 
-  router.get('/animals/edit/:id')
+router.get('/animals/edit/:id');
 
 router
   .route('/animals/edit/:id')
@@ -114,18 +113,32 @@ router
     }
   });
 
-  // Удаление картинки животного
-
-
-  router.get('/animals/delete/image/:id', async (req, res) => {
-    console.log(req.params);
+  router.post('/animals/add-pic/:id', upload.any('filedata'), async (req, res) => {
     const { id } = req.params;
-    const { srcDel } = req.query;
+    const allPath = req.files.map((el) => el.path.slice(6));
+    console.log(allPath);
 
-    const animal = await Animal.findById(id);
-    const pic = animal.picture.filter(el => el === srcDel);
-    console.log(pic);
-  });
+    // const animal = await Animal.findById(id);
+
+  })
+
+// Удаление картинки животного
+
+router.get('/animals/delete/image/:id', async (req, res) => {
+  const { id } = req.params;
+  const { srcDel } = req.query;
+
+  const animal = await Animal.findById(id);
+  animal.picture = animal.picture.filter((el) => el !== `/${srcDel}`);
+
+  try {
+    await animal.save();
+    await fs.rm(`public/${srcDel}`);
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
 
 // Удаление животного
 
