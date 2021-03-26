@@ -56,6 +56,8 @@ router
     res.status(200).redirect('/admin');
   });
 
+  router.get('/animals/edit/:id')
+
 router
   .route('/animals/edit/:id')
   .get(async (req, res) => {
@@ -110,6 +112,13 @@ router
       await newCategory.save();
       res.status(200).redirect('/admin');
     }
+  });
+
+  // Удаление картинки животного
+
+
+  router.get('/animals/delete/image/:id', async (req, res) => {
+    console.log(req.params);
   });
 
 // Удаление животного

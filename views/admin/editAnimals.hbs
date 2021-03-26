@@ -1,3 +1,4 @@
+<script defer src="/js/editAnimals.js"></script>
 {{> adminHeader}}
 
 
@@ -39,13 +40,13 @@
         <input type="file" name="filedata" multiple>
       </div> --}}
 
-      <div>
+      <div id="animal-pic">
         {{#each animal.picture}}
         <div class='image-preview'>
           <img src="{{this}}" alt="" width='150' id='preview-pic'>
           <button class='preview-close-btn' data-action='delete-preview-pic'>X</button>
         </div>
-        <input type='hidden' name='picUrl' value='{{this}}' id='picUrl'>
+        <input type='hidden' name='picUrl' value='{{this}}'>
         {{/each}}
       </div>
 
