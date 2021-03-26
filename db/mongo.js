@@ -7,7 +7,6 @@ const dbOptions = {
   useUnifiedTopology: true,
 };
 
-
 //Асинхронность Тут не нужна. Можно без асинк-авейта.
 const connectDB = async () => {
   await mongoose.connect(DB_PATH, dbOptions, () => {

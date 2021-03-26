@@ -7,9 +7,9 @@ const cookieParser = require('cookie-parser');
 
 // const { sessionChecker } = require('./middleware/auth');
 
-const useMiddleware = require('./middleware');
+// const useMiddleware = require('./middleware');
 
-const indexRouter = require('./routes/index');
+// const indexRouter = require('./routes/index');
 // const authRouter = require('./routes/auth');
 // const animalRouter = require('./routes/animals');
 // const adminRouter = require('./routes/admin');
@@ -23,12 +23,12 @@ const connectDB = require('./db/mongo');
 
 const app = express();
 
-useMiddleware(app);
+// useMiddleware(app);
 // hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
 connectDB();
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 // app.use('/', authRouter);
 // app.use('/', animalRouter);
 // app.use('/', tariffRouter);
@@ -50,8 +50,11 @@ app.use('/', indexRouter);
 
 // useErrorHandlers(app);
 
-app.get('*', (req, res) => {
-  res.send({ test: 'TEST' });
+const Category = require('./models/category.model');
+
+app.get('*', async (req, res) => {
+  const categories = await Category.find().lean();
+  res.send(categories);
 });
 
 app.listen(PORT || 3000, () => {
