@@ -19,18 +19,18 @@ showBtn.addEventListener('click', () => {
 //   const form = document.getElementById("formToAddAnimals");
 //   const formData = new FormData(form);
 //   console.log(formData);
-//   // const response = await fetch('/admin', {
-//   //   method: 'POST',
-//   //   headers: {
-//   //     'Content-type': 'multipart/form-data',
-//   //   },
-//   //   body: JSON.stringify({
-//   //     name: e.target.name.value,
-//   //     description: e.target.description.value,
-//   //     englishName: e.target.englishName.value,
-//   //     categoryes: e.target.categoryes.value,
-//   //   }),
-//   //   file
-//   // });
-//   console.log('catch');
+//   const response = await fetch('/admin', {
+//     method: 'POST',
+//     headers: {
+//       'Content-type': 'multipart/form-data',
+//     },
+//     body: JSON.stringify({
+//       name: e.target.name.value,
+//       description: e.target.description.value,
+//       englishName: e.target.englishName.value,
+//       categoryes: e.target.categoryes.value,
+//     }),
+//     file
+//   });
+// //   console.log('catch');
 // });
