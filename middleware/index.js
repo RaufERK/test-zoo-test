@@ -10,6 +10,7 @@ const { DB_PATH, MOCK_DB } = process.env;
 
 const hbs = require('hbs');
 
+//===>> Эта мидлВара вроде не нужна уже...
 hbs.registerHelper('ifCond', function (v1, v2, options) {
   if (v1 === v2) {
     return options.fn(this);
@@ -26,6 +27,8 @@ module.exports = function (app) {
 
   app.use(
     session({
+      
+      //Вынести в дотЭнв
       secret: 'keyboard cat',
       resave: true,
       saveUninitialized: false,

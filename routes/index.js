@@ -6,7 +6,9 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   const categories = await Category.find().lean();
+  console.log('==========>');
   console.log(categories);
+  console.log('==========>');
   res.render('index', { title: 'Elbrus ZOO', categories });
 });
 
