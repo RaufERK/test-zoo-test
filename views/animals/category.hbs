@@ -16,9 +16,9 @@
   {{/if}}
 
   <div class="animal-types">
-    {{!-- {{#unless category.animals}}
-    <p>Животных данной категории пока не завезли</p>
-    {{/unless}} --}}
+    {{#unless category.animals}}
+    <p>Животных данной категории пока не завезли. Пожалуйста, вернитесь немного позже.</p>
+    {{/unless}}
         
 
     {{#each category.animals}}
