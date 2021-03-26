@@ -49,6 +49,9 @@ if (tariffEditForm) {
   }
 }
 
+dateTicket.valueAsDate = new Date();
+dateTicket.min = new Date().toISOString().slice(0, 10);
+
 buyTicket.addEventListener('change', async (event) => {
   const date = new Date(dateTicket.value);
   if (date.getDay() === 0 || date.getDay() === 6) {

@@ -24,6 +24,18 @@ router
     }
   });
 
+  router
+    .route('/payment')
+    .get(async (req, res) => {
+      res.render('tariffs/payment');
+    })
+    // .post(async (req, res) => {
+    //   try {
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // });
+
 router
   .route('/admin/prices')
   .get(async (req, res) => {
@@ -47,5 +59,6 @@ router
       console.log(err);
     }
   });
+
 
 module.exports = router;
