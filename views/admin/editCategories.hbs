@@ -1,9 +1,8 @@
 <script defer src="/js/admin.js"></script>
 
-
 {{> adminHeader}}
 
-<div class="container maincontent">
+<div class="container innerpage">
 {{> adminNavigation}}
 
   <div class="add-category">
@@ -45,7 +44,7 @@
       <button class="ui button primary">Отправить</button>
     </form>
   </div>
-  <div class="ui divider mydivider"></div>
+  {{!-- <div class="ui divider"></div> --}}
 
 {{#each categories}}
   <div class="ui segment" id='segment{{this._id}}'>
